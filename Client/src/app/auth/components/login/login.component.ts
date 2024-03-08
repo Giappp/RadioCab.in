@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   message:string;
-  constructor(private authService:AuthService,public router:Router){
+  constructor(public authService:AuthService,public router:Router){
     this.message = this.getMessage();
   }
   getMessage(){
