@@ -1,0 +1,13 @@
+F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.deps.json
+F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.dll
+F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.pdb
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.sourcelink.json
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.dll
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\refint\Domain.dll
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.pdb
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\ref\Domain.dll
