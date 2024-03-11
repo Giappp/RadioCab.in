@@ -42,7 +42,6 @@ F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.EntityFrame
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
@@ -249,9 +248,11 @@ F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\runtimes\win\lib\net6
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Application.dll
+F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Domain.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Infrastructure.dll
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Application.pdb
 F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Infrastructure.pdb
+F:\Workspace\eProject 3\Source\API\WebAPI\bin\Debug\net7.0\Domain.pdb
 F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.csproj.AssemblyReference.cache
 F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
 F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.AssemblyInfoInputs.cache

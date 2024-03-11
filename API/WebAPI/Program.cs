@@ -19,27 +19,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JWTConfig"));
 builder.Services
     .AddApplication()
-    .AddInfrastructure();
+    .AddInfrastructure(builder.Configuration);
+builder.Services.AddSignalR();
 
-builder.Services.AddAuthentication(options => {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    // Adding Jwt Bearer
-    .AddJwtBearer(options => {
-        options.SaveToken = true;
-        options.RequireHttpsMetadata = false;
-        options.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidAudience = System.Configuration.ConfigurationManager.AppSettings["JWTConfig:ValidAudience"],
-            ValidIssuer = System.Configuration.ConfigurationManager.AppSettings["JWTConfig:ValidIssuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTConfig:Token"])),
-        };
-    });
+
+//var cs = builder.Configuration.GetConnectionString("DefaultConnection");
+//builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(cs));
+
+
 
 var app = builder.Build();
 

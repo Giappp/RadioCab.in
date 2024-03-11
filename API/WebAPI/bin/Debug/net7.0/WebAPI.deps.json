@@ -14,6 +14,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.16",
           "Microsoft.AspNetCore.Identity.UI": "7.0.16",
           "Microsoft.AspNetCore.OpenApi": "7.0.13",
+          "Microsoft.EntityFrameworkCore": "7.0.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.16",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.16",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.12",
@@ -1272,7 +1273,7 @@
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.16",
           "Microsoft.EntityFrameworkCore.Analyzers": "7.0.16",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
@@ -1354,15 +1355,9 @@
           "Microsoft.Extensions.Primitives": "7.0.0"
         }
       },
-      "Microsoft.Extensions.DependencyInjection/8.0.0": {
+      "Microsoft.Extensions.DependencyInjection/7.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
-        },
-        "runtime": {
-          "lib/net7.0/Microsoft.Extensions.DependencyInjection.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
@@ -1429,7 +1424,7 @@
       },
       "Microsoft.Extensions.Logging/7.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
           "Microsoft.Extensions.Options": "7.0.1"
@@ -1575,7 +1570,7 @@
       },
       "Microsoft.VisualStudio.Web.CodeGeneration/7.0.12": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "7.0.12"
         },
         "runtime": {
@@ -1587,7 +1582,7 @@
       },
       "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.12": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.12",
           "Newtonsoft.Json": "13.0.1"
         },
@@ -2738,14 +2733,26 @@
           "Application.dll": {}
         }
       },
+      "Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.16",
+          "Microsoft.EntityFrameworkCore": "7.0.16"
+        },
+        "runtime": {
+          "Domain.dll": {}
+        }
+      },
       "Infrastructure/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.16",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.16",
+          "Microsoft.AspNetCore.Identity.UI": "7.0.16",
           "Microsoft.EntityFrameworkCore": "7.0.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.16",
-          "Microsoft.Extensions.DependencyInjection": "8.0.0"
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         },
         "runtime": {
           "Infrastructure.dll": {}
@@ -3417,12 +3424,12 @@
       "path": "microsoft.extensions.configuration.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection/8.0.0": {
+    "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-V8S3bsm50ig6JSyrbcJJ8bW2b9QLGouz+G1miK3UTaOWmMtFwNNNzUf4AleyDWUmTrWMLNnFSLEQtxmxgNQnNQ==",
-      "path": "microsoft.extensions.dependencyinjection/8.0.0",
-      "hashPath": "microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512"
+      "sha512": "sha512-elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
+      "path": "microsoft.extensions.dependencyinjection/7.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
       "type": "package",
@@ -4468,6 +4475,11 @@
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
     "Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
