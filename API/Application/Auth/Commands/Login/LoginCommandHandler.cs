@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Auth.Commands.Login
 {
-    internal class LoginCommandHandler : IRequestHandler<LoginCommandRequest,LoginCommandRespone>
+    public class LoginCommandHandler : IRequestHandler<LoginCommandRequest,LoginCommandRespone>
     {
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IIdentityService _identityService;

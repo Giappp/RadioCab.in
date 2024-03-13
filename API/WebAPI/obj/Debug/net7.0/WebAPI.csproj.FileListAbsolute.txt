@@ -1,7 +1,0 @@
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.csproj.AssemblyReference.cache
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.GeneratedMSBuildEditorConfig.editorconfig
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.AssemblyInfoInputs.cache
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.AssemblyInfo.cs
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.csproj.CoreCompileInputs.cache
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
-F:\Workspace\eProject 3\Source\API\WebAPI\obj\Debug\net7.0\WebAPI.sourcelink.json

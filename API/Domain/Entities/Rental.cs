@@ -16,6 +16,7 @@ namespace Domain.Entities
         public int RentalId { get; set; }
         public int UserId { get; set; }
         public int DriverId { get; set; }
+        public int PaymentId {  get; set; }
         public string Status { get; set; }
         public double PickUpLocation { get; set; }
         public double Destination { get; set; }
@@ -26,5 +27,7 @@ namespace Domain.Entities
         public User User { get; set; }
         [ForeignKey(nameof(DriverId))]
         public Driver Driver { get; set; }
+        [ForeignKey(nameof(PaymentId))]
+        public Payment Payment { get; set; }
     }
 }

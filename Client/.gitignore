@@ -43,8 +43,7 @@ testem.log
 Thumbs.db
 
 #API Project
-API/obj
-API/Application/obj
-API/Domain/obj
-API/Infrastructure/obj
-API/WebAPI/obj
+bin/
+obj/
+packages/
+Debug/
