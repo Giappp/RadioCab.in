@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Auth.Commands.Login
 {
-    internal class LoginCommandHandler : IRequestHandler<LoginCommandRequest>
+    internal class LoginCommandHandler : IRequestHandler<LoginCommandRequest,LoginCommandRespone>
     {
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IIdentityService _identityService;
@@ -32,7 +32,7 @@ namespace Application.Auth.Commands.Login
                 return null;
             }
             string token = _tokenGenerator.GenerateJWTToken(userId) ?? string.Empty;
-            return new LoginCommandRespone { Token = token, UserId = userId};
+            return new LoginCommandRespone { Token = token, UserId = userId };
         }
     }
 }
