@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ public static class DependecyInjection
         var assembly = typeof(DependecyInjection).Assembly;
 
         services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(assembly));
+       
 
         services.AddValidatorsFromAssembly(assembly);
 
