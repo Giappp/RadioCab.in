@@ -1,4 +1,5 @@
 F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.deps.json
+F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.runtimeconfig.json
 F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.dll
 F:\Workspace\eProject 3\Source\API\Domain\bin\Debug\net7.0\Domain.pdb
 F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
@@ -10,4 +11,5 @@ F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.sourcelink.jso
 F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.dll
 F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\refint\Domain.dll
 F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.pdb
+F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\Domain.genruntimeconfig.cache
 F:\Workspace\eProject 3\Source\API\Domain\obj\Debug\net7.0\ref\Domain.dll
