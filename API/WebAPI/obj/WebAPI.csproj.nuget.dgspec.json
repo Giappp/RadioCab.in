@@ -167,6 +167,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj": {
+                "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj"
+              },
               "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\Domain.csproj": {
                 "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\Domain.csproj"
               }
@@ -225,7 +228,7 @@
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

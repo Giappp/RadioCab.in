@@ -60,7 +60,8 @@ public static class DependencyInjection
         services.AddDefaultIdentity<IdentityUser>(options =>
                options.SignIn.RequireConfirmedAccount = false)
                    .AddRoles<IdentityRole>()
-                   .AddEntityFrameworkStores<AuthDbContext>();
+                   .AddEntityFrameworkStores<AuthDbContext>()
+                   .AddDefaultTokenProviders();
 
         return services;
     }
