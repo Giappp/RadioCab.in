@@ -1,26 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Workspace\\eProject 3\\Source\\API\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj": {
+    "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Workspace\\eProject 3\\Source\\API\\Application\\obj\\",
+        "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -33,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -59,32 +70,52 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\Domain.csproj": {
+    "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Workspace\\eProject 3\\Source\\API\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -97,6 +128,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -135,32 +171,52 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -180,6 +236,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -242,43 +303,63 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Workspace\\eProject 3\\Source\\API\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Workspace\\eProject 3\\Source\\API\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "F:\\Workspace\\eProject 3\\Source\\API\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj": {
-                "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Application\\Application.csproj"
+              "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Application\\Application.csproj"
               },
-              "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\thanh\\OneDrive\\Documents\\GitHub\\eProject3\\API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -287,6 +368,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -343,6 +429,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.16, 7.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -351,7 +455,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
