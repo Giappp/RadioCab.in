@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "zTDa5yjzRs5FrBeTXSN8rCbNZcreBvC99Z8DGo5HlizT+I+Cp/C5StgI0JrORWp27Ttg99JipyhYxWb9WMQWOw==",
   "success": true,
-  "projectFilePath": "F:\\Workspace\\eProject 3\\Source\\API\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "D:\\eProject3\\API\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
