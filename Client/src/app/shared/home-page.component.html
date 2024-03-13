@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RadioCab</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+
+    <link href="https://getbootstrap.com/docs/5.3/examples/blog/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="border-bottom lh-1 py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 text-start mx-4">
+                    <a class="blog-header-logo text-body-emphasis text-decoration-none" href="#">Radiocab.In</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary mx-2" href="#">Login</a>
+                    <a class="btn btn-sm btn-outline-secondary mx-2" href="#">Signup</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <a class="nav-item nav-link link-body-emphasis flex-fill text-center" href="#">U.S.</a>
+                <a class="nav-item nav-link link-body-emphasis flex-fill text-center" href="#">Technology</a>
+                <a class="nav-item nav-link link-body-emphasis flex-fill text-center" href="#">Design</a>
+                <a class="nav-item nav-link link-body-emphasis flex-fill text-center" href="#">Travel</a>
+            </nav>
+        </div>
+        <script>
+            const navLinks = document.querySelectorAll('.nav-item');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!event.target.closest('.nav-item')) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                }
+            });
+        </script>
+    </div>
+
+    <main class="container">
+        <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary d-flex justify-content-center">
+            <div class="col-lg-6 px-0">
+                <div id="searchBox" class="input-group mx-4 mb-5" style="height: 36px; line-height: 36px; padding: 0;">
+                    <div class="input-group-prepend">
+                        <button class="input-group-text bg-transparent border-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="34" fill="none"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                role="img" viewBox="0 0 24 24">
+                                <title>Search</title>
+                                <circle cx="10.5" cy="10.5" r="7.5" />
+                                <path d="M21 21l-5.2-5.2" />
+                            </svg>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter your search" style="border-radius: 6px;">
+                </div>
+            </div>
+        </div>
+        <!-- content-->
+        <div class="row g-5 justify-content-center">
+            <div class="col-md-12">
+                <h3 class="pb-4 mb-4 border-bottom">
+                    Introduction
+                </h3>
+                <article class="blog-post">
+                    <p>Radiocab cung cấp dịch vụ đặt xe taxi trực tuyến tiện lợi và nhanh chóng. Bạn có thể đặt xe từ
+                        mọi nơi và mọi lúc, và chúng tôi sẽ đảm bảo bạn nhận được dịch vụ taxi chất lượng, an toàn và
+                        đáng tin cậy.</p>
+                </article>
+                <h3 class="pb-4 mb-4 border-bottom">
+                    Feedback
+                </h3>
+
+                <p>Để đảm bảo dịch vụ tốt nhất cho khách hàng, chúng tôi luôn lắng nghe phản hồi từ các bạn. Hãy
+                    cùng chia sẻ ý kiến của bạn về dịch vụ của chúng tôi:</p>
+                <div
+                    class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary d-flex flex-column align-items-center">
+                    <div class="mb-3" style="width: 100%;">
+                        <textarea class="form-control" id="feedbackInput" rows="3"
+                            style="resize: none; overflow-y: hidden;" placeholder="Nhập phản hồi của bạn"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary align-self-start" onclick="addFeedback()"
+                        style="width: 80px;">Gửi</button>
+                </div>
+
+                <table class="table">
+                    <div class="py-4">
+                        <p>Một số phản hồi:</p>
+                    </div>
+
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Phản hồi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alice</td>
+                            <td>Đã rất hài lòng với dịch vụ của Radiocab. Xe đến đúng giờ và lái xe rất lịch sự.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bob</td>
+                            <td>Thời gian chờ đợi có thể cải thiện hơn. Mong muốn Radiocab cải thiện điều này.</td>
+                        </tr>
+                        <tr>
+                            <td>Charlie</td>
+                            <td>Xe không được làm sạch kỹ lưỡng sau mỗi chuyến đi. Hy vọng Radiocab sẽ chú ý đến
+                                điều này.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            function addFeedback() {
+                var input = document.getElementById("feedbackInput").value;
+                if (input !== "") {
+                    var table = document.querySelector("table tbody");
+                    var row = table.insertRow();
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    cell1.innerHTML = "Bạn"; 
+                    cell2.innerHTML = input;
+                    document.getElementById("feedbackInput").value = ""; 
+                }
+            }
+            function autoResizeTextarea() {
+                var textarea = document.getElementById("feedbackInput");
+                textarea.style.height = "auto";
+                textarea.style.height = (textarea.scrollHeight) + "px";
+            }
+
+            document.getElementById("feedbackInput").addEventListener("input", autoResizeTextarea);
+        </script>
+
+
+
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+        <p>© 2024 Company, Inc</p>
+        <a href="/"
+            class="d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+        </a>
+        <nav class="nav justify-content-center">
+            <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
+            <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
+            <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
+            <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+            <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+        </nav>
+    </footer>
+
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
