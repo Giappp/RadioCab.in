@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -12,39 +13,30 @@ namespace Infrastructure.Service
 {
     public class TokenGenerator : ITokenGenerator
     {
-        private readonly string _key;
-        private readonly string _issuer;
-        private readonly string _audiece;
-        private readonly string _expiryMinutes;
-        public TokenGenerator(string key, string issuer, string audiece, string expiryMinutes)
+        private readonly IConfiguration _configuration;
+
+        public TokenGenerator(IConfiguration configuration)
         {
-            _key = key;
-            _issuer = issuer;
-            _audiece = audiece;
-            _expiryMinutes = expiryMinutes;
+            _configuration = configuration;
         }
 
-        public string? GenerateJWTToken(string userId)
+        public string CreateJwtSecurityToken(string userId)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
-            var signingCredentials = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
+            List<Claim> authClaims = new()
+        {
+            new Claim(ClaimTypes.NameIdentifier, userId),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
 
-            var claims = new List<Claim>()
-            {
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, userId),
-            };
-
-            var token = new JwtSecurityToken(
-                issuer: _issuer,
-                audience: _audiece,
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_expiryMinutes)),
-                signingCredentials: signingCredentials
+            SymmetricSecurityKey authSigningKey = new(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]!));
+            JwtSecurityToken token = new(
+                _configuration["JWT:ValidIssuer"],
+                _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddMinutes(Double.Parse(_configuration["JWT:ExpiryMinutes"]!)),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
             );
-
-            var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
-            return encodedToken;
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

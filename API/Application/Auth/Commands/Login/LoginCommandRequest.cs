@@ -1,4 +1,5 @@
-﻿using Application.DTOs;
+﻿using Application;
+using Application.Common.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Auth.Commands.Login
 {
-    public class LoginCommandRequest : IRequest<LoginCommandRespone>
+    public class LoginCommandRequest : IRequest<ServiceResult<LoginCommandRespone>>
     {
         public required string Email { get; init; }
         public required string Password { get; init; }

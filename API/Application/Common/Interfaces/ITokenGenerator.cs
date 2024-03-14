@@ -8,6 +8,6 @@ namespace Application.Common.Interfaces
 {
     public interface ITokenGenerator
     {
-        public string? GenerateJWTToken(string userId);
+        public string? CreateJwtSecurityToken(string userId);
     }
 }

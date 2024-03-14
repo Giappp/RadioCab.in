@@ -1,9 +1,13 @@
 ﻿using Application.Common.Interfaces;
+using BCrypt.Net;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,20 +16,45 @@ namespace Infrastructure.Service
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public IdentityService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
+        private readonly IAuthorizationService _authorizationService;
+        public IdentityService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory, IAuthorizationService authorizationService)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
+            _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
+            _authorizationService = authorizationService;
         }
-        public Task<IAsyncResult> AuthorizeAsync(string userId, string policyName)
+        public async Task<bool> AuthorizeAsync(string userId, string policyName)
         {
-            throw new NotImplementedException();
+            ApplicationUser? user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            ClaimsPrincipal principal = await _userClaimsPrincipalFactory.CreateAsync(user);
+            AuthorizationResult result = await _authorizationService.AuthorizeAsync(principal, policyName);
+            return result.Succeeded;
         }
 
-        public async Task<string?> GetUserByEmailAsync(string email)
+        public async Task<bool?> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+        {
+            ApplicationUser? user = await GetUserByIdAsync(userId);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, currentPassword, newPassword);
+            return result.Succeeded;
+        }
+
+        public async Task<bool> CheckPasswordAsync(string userId, string password)
+        {
+            ApplicationUser? user = await GetUserByIdAsync(userId);
+            if(user != null)
+            {
+                return await _userManager.CheckPasswordAsync(user, password);
+            }
+            return false;
+        }
+
+        public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
         {
             ApplicationUser? user = await _userManager.FindByEmailAsync(email);
             if(user is null)
@@ -35,9 +64,9 @@ namespace Infrastructure.Service
             return user;
         }
 
-        public Task<string?> GetUserByIdAsync(string userId)
+        public async Task<ApplicationUser?> GetUserByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            return await _userManager.FindByIdAsync(userId);
         }
 
         public async Task<string?> GetUserEmailAsync(string userId)
@@ -52,17 +81,34 @@ namespace Infrastructure.Service
             return user?.Id;
         }
 
-        public async Task<bool> IsInRoleAsync(string userId, string role)
+        public Task<IList<string>> GetUserRolesAsync(string userId)
         {
-            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
-            IList<string> userRoles = await _userManager.GetRolesAsync(user);
-            return userRoles == role ? true : false;
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> SignInUserAsync(string email, string password)
+        public async Task<bool> IsInRoleAsync(string userId, string role)
         {
-            var result = await _signInManager.PasswordSignInAsync(email, password,true,false);
-            return result.Succeeded;
+            ApplicationUser? user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == userId);
+            return user != null && await _userManager.IsInRoleAsync(user, role);
         }
+        public async Task<string?> CreateUserAsync(string userName, string email, string password, string phone, string role)
+        {
+            ApplicationUser user = new ApplicationUser{
+                UserName = userName,
+                Email = email,
+                PhoneNumber = phone,
+            };
+            IdentityResult result = await _userManager.CreateAsync(user,password);
+            if (result.Succeeded)
+            {
+                var roles = await _userManager.AddToRoleAsync(user, role);
+            }
+            else
+            {
+                await Console.Out.WriteLineAsync(result.ToString());
+            }
+            return result.Succeeded ? user.Id : null;
+        }
+        
     }
 }

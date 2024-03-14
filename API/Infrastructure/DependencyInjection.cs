@@ -1,4 +1,7 @@
-﻿using Infrastructure.Data;
+﻿using Application.Common.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.Identity;
+using Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +21,10 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<AuthDbContextFactory>();
-        services.AddSingleton<AppDbContext>();
-
+        services.AddSingleton<AppDbContextFactory>();
+        services.AddTransient<ITokenGenerator, TokenGenerator>();
+        services.AddTransient<IIdentityService, IdentityService>();
+        services.AddLogging();
         // Configure AuthDbContext using AuthDbContextFactory
         services.AddDbContext<AuthDbContext>((provider, options) =>
         {
@@ -50,19 +55,29 @@ public static class DependencyInjection
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                     ValidAudience = configuration["JWT:ValidAudience"],
                     ValidIssuer = configuration["JWT:ValidIssuer"],
+                    ClockSkew = TimeSpan.FromMinutes(Convert.ToDouble(configuration["JWT:ExpiryMinutes"])),
                     IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]!))
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]!))
                 };
             });
 
-        services.AddDefaultIdentity<IdentityUser>(options =>
+        services.AddAuthorization(options =>
+            options.AddPolicy("ShouldBeAuthenticatedUser", policy => policy.RequireAuthenticatedUser())
+        );
+
+
+        services.AddDefaultIdentity<ApplicationUser>(options =>
                options.SignIn.RequireConfirmedAccount = false)
                    .AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<AuthDbContext>()
                    .AddDefaultTokenProviders();
 
+       
+        //services.<ITokenGenerator, TokenGenerator>();
         return services;
     }
 }

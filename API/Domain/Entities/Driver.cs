@@ -31,6 +31,8 @@ namespace Domain.Entities
         public ICollection<DriverSubscription> DriverSubscriptions { get; set; }
         [Required]
         public ICollection<Cab> Cabs { get; set; }
+        [Required]
+        public Company Company { get; set; }
         [NotMapped]
         public bool? IsActive { get; set; }
     }

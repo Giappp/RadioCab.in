@@ -10,10 +10,11 @@ namespace Application.Common.Interfaces
     {
         Task<string?> GetUserEmailAsync(string userId);
         Task<string?> GetUserIdAsync(string email);
-        Task<ApplicationUser?> GetUserByIdAsync(string userId);
-        Task<ApplicationUser?> GetUserByEmailAsync(string email);
         Task<bool> IsInRoleAsync(string userId, string role);
-        Task<IAsyncResult> AuthorizeAsync(string userId, string policyName);
-        Task<bool> SignInUserAsync(string email, string password);
+        Task<bool> AuthorizeAsync(string userId, string policyName);
+        Task<bool> CheckPasswordAsync(string userId, string password);
+        Task<bool?> ChangePasswordAsync(string userId, string currentPassword,string newPassword);
+        Task<IList<string>> GetUserRolesAsync(string userId);
+        Task<string?> CreateUserAsync(string userName, string email, string password, string phone, string role);
     }
 }
