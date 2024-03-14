@@ -21,7 +21,7 @@ namespace Infrastructure.Data
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var builder = new DbContextOptionsBuilder<IdentityDbContext>();
+            var builder = new DbContextOptionsBuilder<AuthDbContext>();
             var connectionString = configuration.GetConnectionString("AuthConnection");
 
             builder.UseSqlServer(connectionString);

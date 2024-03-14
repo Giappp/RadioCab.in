@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class AuthDbContext : IdentityDbContext
+    public class AuthDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AuthDbContext() : base() { }
-        public AuthDbContext(DbContextOptions<IdentityDbContext> options) : base(options) { }
-        public DbSet<IdentityUser> IdentityUsers { get; set; }
-        public DbSet<IdentityRole> IdentityRoles { get; set; }
-
+        public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            new AuthDbInitializer(builder).Seed();
+        }
     }
 }

@@ -41,3 +41,15 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+# API Project
+bin
+obj
+packages
+Debug
+API/WebAPI/obj
+API/Domain/bin
+API/Domain/obj
+API/Application/obj
+API/Application/obj
+API/Infrastructure/obj
+API/WebAPI/obj

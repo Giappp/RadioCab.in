@@ -29,6 +29,10 @@ namespace Domain.Entities
         public Membership Membership { get; set; }
         [Required]
         public ICollection<DriverSubscription> DriverSubscriptions { get; set; }
+        [Required]
+        public ICollection<Cab> Cabs { get; set; }
+        [Required]
+        public Company Company { get; set; }
         [NotMapped]
         public bool? IsActive { get; set; }
     }

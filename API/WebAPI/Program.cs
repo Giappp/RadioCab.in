@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Configuration;
+using MediatR;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,11 +24,6 @@ builder.Services
 builder.Services.AddSignalR();
 
 
-//var cs = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(cs));
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +31,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    using IServiceScope scope = app.Services.CreateScope();
+    AppDbContextFactory appDbContextFactory = scope.ServiceProvider.GetRequiredService<AppDbContextFactory>();
+    AuthDbContextFactory authDbContextFactory = scope.ServiceProvider.GetRequiredService<AuthDbContextFactory>();
 }
 
 app.UseAuthorization();

@@ -30,5 +30,7 @@ namespace Domain.Entities
         public Membership Membership { get; set; }
         [Required]
         public ICollection<CompanySubscription> CompanySubscriptions { get; set; }
+        [Required]
+        public ICollection<Driver> Drivers { get; set; }
     }
 }
