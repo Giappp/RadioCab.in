@@ -12,10 +12,10 @@ namespace Domain.Entities
     {
         public int DriverId { get; set; }
         public int SubscriptionId { get; set; }
-        public Driver Driver { get; set; } = null;
-        public Subscription Subscription { get; set; } = null;
+        public Driver? Driver { get; set; }
+        public Subscription? Subscription { get; set; }
         public int PaymentId { get; set; }
         [ForeignKey(nameof(PaymentId))]
-        public Payment Payment { get; set; }
+        public Payment? Payment { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentId { get; set; }
-        public string PaymentType { get; set; }
+        public required string PaymentType { get; set; }
         public DateTime? CreatedDate { get; set; }
         public bool IsApproved { get; set; }
         public int PaymentStatus { get; set; }

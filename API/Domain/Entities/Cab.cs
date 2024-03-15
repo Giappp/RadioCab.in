@@ -15,11 +15,11 @@ namespace Domain.Entities
         public int CabId { get; set; }
         [Required]
         [StringLength(maximumLength:10)]
-        public string LisencePlate { get; set; }
+        public required string LisencePlate { get; set; }
         [Required]
         public int ManufactureYear { get; set; }
         public int DriverId { get; set; }
         [ForeignKey(nameof(DriverId))]
-        public Driver Driver { get; set; }
+        public Driver ?Driver { get; set; }
     }
 }

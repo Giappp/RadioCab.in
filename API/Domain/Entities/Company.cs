@@ -17,20 +17,17 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CompanyId { get; set; }
         [Required]
-        public string CompanyName { get; set; }
+        public required string CompanyName { get; set; }
         [Required]
-        public string ContactPerson {  get; set; }
+        public required string ContactPerson {  get; set; }
         [Required]
-        public string Designation {  get; set; }
-        public string FaxNumber { get; set; }
-        public string Description { get; set; }
+        public required string Designation {  get; set; }
+        public required string FaxNumber { get; set; }
+        public string? Description { get; set; }
         public int MembershipId { get; set; }
-        [Required]
         [ForeignKey(nameof(MembershipId))]
-        public Membership Membership { get; set; }
-        [Required]
-        public ICollection<CompanySubscription> CompanySubscriptions { get; set; }
-        [Required]
-        public ICollection<Driver> Drivers { get; set; }
+        public Membership ?Membership { get; set; }
+        public ICollection<CompanySubscription> ?CompanySubscriptions { get; set; }
+        public ICollection<DriverContract> ?DriverContracts { get; set; }
     }
 }

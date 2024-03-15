@@ -13,7 +13,7 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string ModelName { get; set; }
-        public string Description { get; set; }
+        public required string ModelName { get; set; }
+        public string? Description { get; set; }
     }
 }

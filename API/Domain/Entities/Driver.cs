@@ -15,24 +15,20 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DriverId { get; set; }
         [Required]
-        public string DriverName { get; set; }
+        public required string DriverName { get; set; }
         [Required]
-        public string ContactPerson { get; set; }
+        public required string ContactPerson { get; set; }
         [Required]
-        public string City { get; set; }
+        public required string City { get; set; }
         [Required]
-        public int Experience { get; set; }
-        public string Description { get; set; }
+        public required int Experience { get; set; }
+        public string ?Description { get; set; }
         public int MembershipId { get; set; }
-        [Required]
         [ForeignKey(nameof(MembershipId))]
-        public Membership Membership { get; set; }
-        [Required]
-        public ICollection<DriverSubscription> DriverSubscriptions { get; set; }
-        [Required]
-        public ICollection<Cab> Cabs { get; set; }
-        [Required]
-        public Company Company { get; set; }
+        public Membership ?Membership { get; set; }
+        public ICollection<DriverSubscription> ?DriverSubscriptions { get; set; }
+        public ICollection<Cab> ?Cabs { get; set; }
+        public ICollection<DriverContract> ?DriverContracts { get; set; }
         [NotMapped]
         public bool? IsActive { get; set; }
     }

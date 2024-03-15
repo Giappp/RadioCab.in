@@ -14,7 +14,7 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlanId {  get; set; }
         [Required]
-        public string PlanName { get; set; }
+        public required string PlanName { get; set; }
 
     }
 }

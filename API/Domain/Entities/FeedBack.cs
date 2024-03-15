@@ -17,7 +17,7 @@ namespace Domain.Entities
         public int UserId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public string Message { get; set; }
-        public string FeedBackType {  get; set; }
+        public required string Message { get; set; }
+        public required string FeedBackType {  get; set; }
     }
 }
