@@ -17,17 +17,17 @@ namespace Domain.Entities
         public int UserId { get; set; }
         public int DriverId { get; set; }
         public int PaymentId {  get; set; }
-        public string Status { get; set; }
+        public string ?Status { get; set; }
         public double PickUpLocation { get; set; }
         public double Destination { get; set; }
         public DateTime StartAt { get; set; }
         public DateTime EndAt { get; set; }
         public float Price {  get; set; }
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User? User { get; set; }
         [ForeignKey(nameof(DriverId))]
-        public Driver Driver { get; set; }
+        public Driver? Driver { get; set; }
         [ForeignKey(nameof(PaymentId))]
-        public Payment Payment { get; set; }
+        public Payment ?Payment { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberShipId { get; set; }
-        public string MembershipName { get; set; }
-        public string MembershipDescription { get; set; }
+        public required string MembershipName { get; set; }
+        public string? MembershipDescription { get; set; }
     }
 }

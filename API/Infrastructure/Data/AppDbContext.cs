@@ -32,13 +32,8 @@ namespace Infrastructure.Data
             modelBuilder.Entity<DriverSubscription>()
                 .HasKey(ds => new { ds.DriverId, ds.SubscriptionId });
 
-            
-
             base.OnModelCreating(modelBuilder);
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KHDUPVB\SQLEXPRESS;Database=RadioCabDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+            new AppDbInitializer(modelBuilder).Seed();
         }
     }
 }

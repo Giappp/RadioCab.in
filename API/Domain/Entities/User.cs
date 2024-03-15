@@ -13,8 +13,8 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string Phone { get; set; }
+        public required string UserName { get; set; }
+        public required string Phone { get; set; }
         
     }
 }

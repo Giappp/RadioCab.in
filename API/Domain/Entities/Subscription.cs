@@ -16,12 +16,12 @@ namespace Domain.Entities
         public int SubscriptionId { get; set; }
         [Required]
         public int PlanId { get; set; }
-        public DateTime? StartDate { get; set; }
+        public DateTime? StartDate { get; set; } = DateTime.UtcNow;
         public DateTime? EndDate { get; set; }
         
         [ForeignKey(nameof(PlanId))]
-        public Plan Plan { get; set; }
-        public ICollection<CompanySubscription> CompanySubscriptions { get; set; }
-        public ICollection<DriverSubscription> DriverSubscriptions { get; set; }
+        public Plan? Plan { get; set; }
+        public ICollection<CompanySubscription> ?CompanySubscriptions { get; set; }
+        public ICollection<DriverSubscription> ?DriverSubscriptions { get; set; }
     }
 }
