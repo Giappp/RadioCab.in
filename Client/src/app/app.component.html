@@ -1,8 +1,11 @@
-<h1 class="title">Angular Router</h1>
-<nav>
-  <a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Admin</a>
-  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
-</nav>
-
-
+<!-- <ng-container >
+  <app-header></app-header>
+  <ng-component *ngIf="isLoginPage()">
+    <router-outlet></router-outlet>
+  </ng-component>
+</ng-container> -->
+<app-header></app-header>
 <router-outlet></router-outlet>
+<!-- <ng-container *ngIf="isLoginPage()">
+  <router-outlet></router-outlet>
+</ng-container> -->

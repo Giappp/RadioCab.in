@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthModule } from '../auth/auth.module';
+import { AuthRoutingModule } from '../auth/auth-routing.module';
 
 
 @NgModule({
   declarations: [
-    HomePageComponent,
-    NavbarComponent,
+   
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
-  ]
+    SharedRoutingModule,
+    AuthModule,
+    AuthRoutingModule
+  ],
+  
 })
 export class SharedModule { }
