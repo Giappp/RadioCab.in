@@ -1,6 +1,6 @@
-<body >
+<body>
   <div class="container">
-    <form class="mx-auto" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <form class="mx-auto" [formGroup]="loginForm" (ngSubmit)="onLogin()" style="padding: 0 500px 0 500px;">
       <h4 class="text-center" style="font-size: 2rem !important; font-weight: 700;">Login</h4>
       <div class="mb-3 mt-5">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -16,7 +16,7 @@
         formControlName="password">
         <p><a class="link-opacity-100-hover">Forget password?</a></p>
       </div>
-      <button type="submit" class="btn btn-primary mt-4">Submit</button>
+      <button type="submit" class="btn btn-primary mt-4 active" style="width: 100%; ">Login</button>
     </form>
   </div>
 

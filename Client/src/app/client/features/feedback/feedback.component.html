@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="auto">
 
 <head>
     <meta charset="UTF-8">
@@ -14,18 +14,19 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body style="background-size: cover;">
-    <div class="container mt-4 shadow-lg">
+<body>
+    <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <h2 class="text-white d-flex justify-content-center">Feedback Form</h2>
-                <hr>
-                <form>
+                <h2 class=" d-flex justify-content-center mb-4">Feedback Form</h2>
+                
+                <form style="margin-bottom: 80px;">
                     <h4>Feedback type</h4>
-                    <div class="row">
+                    <hr>
+                    <div class="row mb-4">
                         <div class="col-md-4">
-                            <input type="radio" name="feed" class="pointer" required>&nbsp;&nbsp;<label>Complaint,</label>
+                            <input type="radio" name="feed" class="pointer" required>&nbsp;&nbsp;<label>Complaint</label>
                         </div>
 
                         <div class="col-md-4">
@@ -37,27 +38,29 @@
                         </div>
                     </div>
 
+                    <h4 class="mt-3">Information User</h4><hr>
+                    
                     <div class="form-group mt-3 mb-3">
                         <label class="form-label">Full Name</label>
                         <input type="text" class="form-control" placeholder="Enter your full name" required>
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-3">
                         <label class="form-label">Mobile</label>
                         <input type="text" class="form-control" placeholder="Enter your mobile number" required>
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-3">
                         <label class="form-label">Email</label>
                         <input type="text" class="form-control" placeholder="Enter your email" required>
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-3">
                         <label class="form-label">City</label>
                         <input type="text" class="form-control" placeholder="Enter your city" required>
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-3">
                         <label class="form-label">Describe Feedback</label>
                         <textarea rows="4" class="form-control" placeholder="Enter your feedback" style="overflow: hidden; resize: none;" required></textarea>
                     </div>
