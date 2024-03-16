@@ -1,4 +1,5 @@
 ﻿using Application.Common.Models;
+using Application.DTOs.Driver;
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Common;
@@ -26,6 +27,8 @@ namespace Infrastructure.Repositories
         }
         public async Task<IEnumerable<Driver>> GetDriversFromCompany(int companyId)
         {
+            //DriverFromCompanyDTO driver = _context.Drivers
+               // .Include(i => i.DriverContracts)
             throw new NotImplementedException();
         }
 

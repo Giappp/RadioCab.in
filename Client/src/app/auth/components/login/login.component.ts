@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { IUserResponse } from '../../interfaces/iuser-response';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,6 @@ import { Observable } from 'rxjs';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
-onLogin() {
-throw new Error('Method not implemented.');
-}
  loginForm!: FormGroup;
 
  loading$: Observable<boolean> = new Observable(); 
@@ -21,7 +19,8 @@ throw new Error('Method not implemented.');
 
   constructor(
     private fb: FormBuilder,
-    private router:Router
+    private router:Router,
+    private loginService:AuthService
   ){
     this.loginForm = this.fb.group({
       email: [''],
@@ -45,5 +44,15 @@ throw new Error('Method not implemented.');
   }
   get f(){
     return this.loginForm.controls;
+  }
+  onLogin(){
+    if(this.loginForm.valid){
+      //const {email,password} = this.loginForm.value;
+      this.loginService.loginUserRequest(this.loginForm.value).subscribe((respone:IUserResponse) => {
+        console.log(respone);
+      })
+    }else{
+      console.log(this.loginForm.errors);
+    }
   }
 }

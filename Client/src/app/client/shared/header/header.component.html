@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+  <div
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+  >
+    <a
+      routerLink=""
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+    >
+      <span class="fs-4">RadioCab.In</span>
+    </a>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<header>
-    <div class="container">
-        <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a routerLink=""
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <span class="fs-4">RadioCab.In</span>
-            </a>
-
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a routerLink="" class="nav-link px-2">Home</a></li>
-                <li><a class="nav-link px-2">Pricing</a></li>
-                <li><a class="nav-link px-2">FAQs</a></li>
-                <li><a routerLink="about" class="nav-link px-2">About</a></li>
-            </ul>
-            <div class="col-md-3 text-end">
-                <a routerLink="/auth/login" class="btn btn-outline-primary me-2" (click)="goToLogin()" routerLinkActive="active"
-                 ariaCurrentWhenActive="page">Login</a>
-                <a routerLink="/auth/register" class="btn btn-primary">Sign-up</a>
-            </div>
-        </header>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a routerLink="" class="nav-link px-2">Home</a></li>
+      <li><a class="nav-link px-2">Pricing</a></li>
+      <li><a class="nav-link px-2">FAQs</a></li>
+      <li><a routerLink="about" class="nav-link px-2">About</a></li>
+    </ul>
+    <div class="col-md-3 text-end">
+      <a
+        [routerLink]="['/auth/login']"
+        class="btn btn-outline-primary me-2"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Login</a
+      >
+      <a [routerLink]="['/auth/register']" class="btn btn-primary">Sign-up</a>
     </div>
-</header>
-</html>
+  </div>
+</div>
