@@ -6,8 +6,8 @@
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email"
         formControlName="email">
-        <div *ngIf="f['email'].errors">
-          <span class="text-red-500">abc</span>
+        <div *ngIf="f['email'].hasError">
+          <span class="text-red-500">{{ f['email'].errors }}</span>
         </div>
       </div>
       <div class="mb-3">
@@ -19,5 +19,5 @@
       <button type="submit" class="btn btn-primary mt-4 active" style="width: 100%; ">Login</button>
     </form>
   </div>
-
 </body>
+</html>
