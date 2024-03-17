@@ -7,6 +7,7 @@ import { RegisterDriverComponent } from './components/register-driver/register-d
 import { RegisterCompanyComponent } from './components/register-company/register-company.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { FormControlName, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterRoleComponent } from './components/register-role/register-role.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormControlName, FormsModule, ReactiveFormsModule } from '@angular/form
     LoginComponent,
     RegisterDriverComponent,
     RegisterCompanyComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    RegisterRoleComponent
   ],
   imports: [
     CommonModule,

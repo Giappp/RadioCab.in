@@ -10,6 +10,7 @@ import { DriversComponent } from './features/drivers/drivers.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { AdvertiseComponent } from './features/advertise/advertise.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     FeedbackComponent,
     DriversComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AdvertiseComponent
   ],
   imports: [
     CommonModule,
