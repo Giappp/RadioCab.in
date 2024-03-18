@@ -10,28 +10,28 @@ import { IUserResponse } from '../../interfaces/iuser-response';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit{
- loginForm!: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
- loading$: Observable<boolean> = new Observable(); 
+  loading$: Observable<boolean> = new Observable();
   success$: Observable<boolean> = new Observable();
   error$: Observable<boolean> = new Observable();
 
   constructor(
     private fb: FormBuilder,
-    private router:Router,
-    private loginService:AuthService
-  ){
+    private router: Router,
+    private loginService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: [''],
       password: [''],
     })
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['',[Validators.required,Validators.email]],
-      password: ['',[Validators.required,this.passwordValidator]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this.passwordValidator]]
     })
   }
 
@@ -42,16 +42,16 @@ export class LoginComponent implements OnInit{
     }
     return null;
   }
-  get f(){
+  get f() {
     return this.loginForm.controls;
   }
-  onLogin(){
-    if(this.loginForm.valid){
+  onLogin() {
+    if (this.loginForm.valid) {
       //const {email,password} = this.loginForm.value;
-      this.loginService.loginUserRequest(this.loginForm.value).subscribe((respone:IUserResponse) => {
+      this.loginService.loginUserRequest(this.loginForm.value).subscribe((respone: IUserResponse) => {
         console.log(respone);
       })
-    }else{
+    } else {
       console.log(this.loginForm.errors);
     }
   }
