@@ -1,20 +1,24 @@
 <div class="container">
-  <form class="mx-auto" [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLogin()">
-    <h4 class="text-center" style="font-size: 2rem !important; font-weight: 700;">Login</h4>
-    <div class="mb-3 mt-5">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-        placeholder="Enter your email" formControlName="email">
-      <div *ngIf="f['email'].hasError">
-        <span class="text-red-500">{{ f['email'].errors }}</span>
+  <div class="row">
+    <form class="mx-auto col-md-5" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <h4 class="text-center">Login</h4>
+      <div class="mb-3 mt-5">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter your email" formControlName="email">
+        <div *ngIf="f['email'].hasError">
+          <span class="text-red-500">{{ f['email'].errors }}</span>
+        </div>
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"
-        formControlName="password">
-      <p><a class="link-opacity-100-hover">Forget password?</a></p>
-    </div>
-    <button type="submit" class="btn btn-primary mt-4" (click)="onLogin()">Submit</button>
-  </form>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"
+          formControlName="password">
+        <p><a href="/auth/login/#" class="text-decoration-underline text-primary link-opacity-100-hover">Forget
+            password?</a></p>
+      </div>
+      <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+    </form>
+  </div>
+
 </div>

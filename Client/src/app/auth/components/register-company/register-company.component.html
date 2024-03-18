@@ -1,181 +1,118 @@
-<!-- <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Signup for Company</h2>
+    </div>
+    <div class="d-flex mx-4 justify-content-center">
+        <div class="col-md-7 col-lg-8">
+            <form [formGroup]="companyForm" (ngSubmit)="OnFormSubmit()">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-control" formControlName="companyName"
+                            placeholder="Enter your company name">
+                        <small
+                            *ngIf="companyForm.get('companyName').invalid && companyForm.get('companyName').touched">*Company
+                            name is required.</small>
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Registration Page</title>
+                    <div class="col-12">
+                        <label class="form-label">Representative</label>
+                        <input type="text" class="form-control" formControlName="representative"
+                            placeholder="Enter your representative">
+                        <small
+                            *ngIf="companyForm.get('representative').invalid && companyForm.get('representative').touched">*Representative
+                            is required.</small>
+                    </div>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+                    <div class="col-12">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="you@example.com">
+                        <small *ngIf="companyForm.get('email').invalid && companyForm.get('email').touched">*Email is
+                            required.</small>
+                    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</head>
+                    <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" formControlName="address"
+                            placeholder="Enter your address">
+                        <small *ngIf="companyForm.get('address').invalid && companyForm.get('address').touched">*Address
+                            is required.</small>
+                    </div>
 
-<body> -->
-    <div class="container">
-        <main>
-            <div class="py-5 text-center">
-                <h2>Signup for Company</h2>
-            </div>
-            <div class="d-flex mx-4 justify-content-center">
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3">Company Information</h4>
-                    <form class="needs-validation" novalidate>
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="companyName" class="form-label">Company Name</label>
-                                <input type="text" class="form-control" id="companyName"
-                                    placeholder="Enter your company name" required>
-                                <div class="invalid-feedback">
-                                    Company name is required.
-                                </div>
-                            </div>
+                    <div class="col-12">
+                        <label class="form-label">Telephone</label>
+                        <input type="text" class="form-control" formControlName="telephone"
+                            placeholder="Enter your telephone">
+                        <small
+                            *ngIf="companyForm.get('telephone').invalid && companyForm.get('telephone').touched">*Telephone
+                            is required.</small>
+                    </div>
 
-                            <div class="col-12">
-                                <label for="representative" class="form-label">Representative</label>
-                                <input type="text" class="form-control" id="representative"
-                                    placeholder="Enter your representative" required>
-                                <div class="invalid-feedback">
-                                    Representative is required.
-                                </div>
-                            </div>
+                    <div class="col-12">
+                        <label class="form-label">Phone <span class="text-body-secondary">(Optional)</span></label>
+                        <input type="text" class="form-control" formControlName="phone" placeholder="Enter your phone">
+                    </div>
 
-                            <div class="col-12">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address.
-                                </div>
-                            </div>
+                    <div class="col-12">
+                        <label class="form-label">Fax <span class="text-body-secondary">(Optional)</span></label>
+                        <input type="text" class="form-control" formControlName="fax" placeholder="Enter your fax">
+                    </div>
 
-                            <div class="col-12">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="Enter your address"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Please enter your address.
-                                </div>
-                            </div>
+                    <div class="col-12">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" formControlName="password"
+                            placeholder="Enter your password">
+                        <small
+                            *ngIf="companyForm.get('password').invalid && companyForm.get('password').touched">*Password
+                            is required.</small>
+                    </div>
 
-                            <div class="col-12">
-                                <label for="telephone" class="form-label">Telephone</label>
-                                <input type="text" class="form-control" id="telephone"
-                                    placeholder="Enter your telephone" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid telephone.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="phone" class="form-label">Phone <span
-                                        class="text-body-secondary">(Optional)</span></label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter your phone">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="fax" class="form-label">Fax <span
-                                        class="text-body-secondary">(Optional)</span></label>
-                                <input type="text" class="form-control" id="fax" placeholder="Enter your fax">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password"
-                                    placeholder="Enter your password" required>
-                                <div class="invalid-feedback">
-                                    Please enter your password.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="confirmPass" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPass"
-                                    placeholder="Confirm your password" required>
-                                <div class="invalid-feedback">
-                                    Please confirm your password.
-                                </div>
-                            </div>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <h4 class="mb-3">Payment Type</h4>
-
-                        <div class="my-3">
-                            <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
-                                    required>
-                                <label class="form-check-label" for="credit">Monthly</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                                <label class="form-check-label" for="debit">Quarterly</label>
-                            </div>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <div class="input-group mb-3">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="termsCheckbox" required>
-                                <label for="termsAndPrivercy" class="form-check-label text-secondary"></label>Read and
-                                Accept <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
-                                <div class="invalid-feedback">
-                                    Checkbox is required.
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Signup</button>
-                    </form>
+                    <div class="col-12">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" formControlName="confirmPass"
+                            placeholder="Confirm your password">
+                        <small
+                            *ngIf="companyForm.get('confirmPass').invalid && companyForm.get('confirmPass').touched">*Confirm
+                            password is required.</small>
+                        <small *ngIf="companyForm.hasError('passwordMismatch', 'confirmPass')">*Passwords
+                            do not match.</small>
+                    </div>
                 </div>
-            </div>
-        </main>
 
-        <div class="my-5 pt-5 text-body-secondary text-center text-small"></div>
+                <hr class="my-4">
+
+                <h4 class="mb-3">Payment Type</h4>
+
+                <div class="my-3">
+                    <div class="form-check">
+                        <input type="radio" value="monthly" class="form-check-input" formControlName="paymentType">
+                        <label class="form-check-label">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" value="quarterly" class="form-check-input" formControlName="paymentType">
+                        <label class="form-check-label">Quarterly</label>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="input-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" formControlName="checkbox">
+                        <label class="form-check-label text-secondary"></label>Read and
+                        accept <a href="#">Terms </a>and <a href="#">Privacy Policy.</a>
+                    </div>
+                    <a routerLink="/auth/register-role"
+                        class="text-end ms-auto text-decoration-underline text-primary">Back to Role</a>
+
+                </div>
+                <button class="w-100 btn btn-outline-primary btn-lg" type="submit"
+                    [disabled]="companyForm.invalid">Signup</button>
+
+            </form>
+        </div>
     </div>
 
 
-<script>
-    (() => {
-        'use strict'
-
-        const forms = document.querySelectorAll('.needs-validation')
-
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                const termsCheckbox = document.getElementById('termsCheckbox')
-                if (!termsCheckbox.checked) {
-                    const invalidCheckboxFeedback = document.querySelector('.invalid-feedback')
-                    invalidCheckboxFeedback.textContent = 'Checkbox is required.'
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                const password = document.getElementById('password').value
-                const confirmPass = document.getElementById('confirmPass').value
-                const passFeedback = document.getElementById('password').nextElementSibling
-                const confirmFeedback = document.getElementById('confirmPass').nextElementSibling
-                if (password !== confirmPass) {
-                    confirmFeedback.textContent = 'Password do not match.'
-                    document.getElementById('password').value = ''
-                    document.getElementById('confirmPass').value = ''
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
-</script>
-
+    <div class="my-5 pt-5"></div>
+</div>
