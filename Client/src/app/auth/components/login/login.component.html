@@ -14,7 +14,7 @@
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"
           formControlName="password">
-        <p><a href="/auth/login/#" class="text-decoration-underline text-primary link-opacity-100-hover">Forget
+        <p><a [routerLink]="['/auth/login/#']" class="text-decoration-underline text-primary link-opacity-100-hover">Forget
             password?</a></p>
       </div>
       <button type="submit" class="btn btn-outline-primary mt-4">Login</button>

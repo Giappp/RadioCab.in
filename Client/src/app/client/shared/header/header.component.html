@@ -1,22 +1,22 @@
 <div class="container-fluid">
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <a routerLink=""
+        <a [routerLink]="['/user/home']"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <span class="fs-4">RadioCab.In</span>
         </a>
 
         <ul class="nav nav-pills mx-2">
-            <li class="nav-item"><a routerLink="/user/home" class="nav-link">Home</a></li>
-            <li class="nav-item"><a routerLink="/user/about" class="nav-link">About</a></li>
-            <li class="nav-item"><a routerLink="/user/company" class="nav-link">Company</a></li>
-            <li class="nav-item"><a routerLink="/user/drivers" class="nav-link">Driver</a></li>
-            <li class="nav-item"><a routerLink="/user/advertise" class="nav-link">Advertise</a></li>
-            <li class="nav-item"><a routerLink="/user/feedback" class="nav-link">Feedback</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/home']" class="nav-link">Home</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/about']" class="nav-link">About</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/company']" class="nav-link">Company</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/drivers']" class="nav-link">Driver</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/advertise']" class="nav-link">Advertise</a></li>
+            <li class="nav-item"><a [routerLink]="['/user/feedback']" class="nav-link">Feedback</a></li>
         </ul>
         <div class="text-end">
-            <a routerLink="/auth/login" class="btn btn-outline-primary me-2">Login</a>
-            <a routerLink="/auth/register-role" class="btn btn-primary">Signup</a>
+            <a [routerLink]="['/auth/login']" class="btn btn-outline-primary me-2">Login</a>
+            <a [routerLink]="['/auth/register-role']" class="btn btn-primary">Signup</a>
         </div>
     </header>
 </div>
