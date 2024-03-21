@@ -13,10 +13,20 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
   private isAuthenticated = false;
+
   constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
     this.isAuthenticated = !!localStorage.getItem('jwt');
   }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
   loginUserRequest(data: IUserLogin): Observable<Authresponse> {
     return this.http
       .post<Authresponse>(
@@ -26,6 +36,7 @@ export class AuthService {
       )
       .pipe(catchError(this.handleError<Authresponse>('Failed to login')));
   }
+
   registerUserRequest(data: User): Observable<any> {
     return this.http
       .post<Authresponse>(
@@ -35,20 +46,29 @@ export class AuthService {
       )
       .pipe(catchError(this.handleError<Authresponse>('Failed to register')));
   }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
     };
   }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('jwt');
+    this.currentUserSubject.next(null);
   }
-  public getAuthentication() {
+
+  isLoggedIn(): boolean {
     return this.isAuthenticated;
   }
-  public setAuthenticate(on: boolean) {
-    this.isAuthenticated = on;
+
+  getUserName(): string {
+    return this.currentUserValue ? this.currentUserValue.username : '';
+  }
+
+  setAuthenticate(value: boolean) {
+    this.isAuthenticated = value;
   }
 }

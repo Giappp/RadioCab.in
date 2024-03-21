@@ -6,6 +6,9 @@ import { FeedbackComponent } from './features/feedback/feedback.component';
 import { CabcompanyComponent } from './features/cabcompany/cabcompany.component';
 import { DriversComponent } from './features/drivers/drivers.component';
 import { AdvertiseComponent } from './features/advertise/advertise.component';
+import { ProfileUserComponent } from '../user/profile-user/profile-user.component';
+import { ProfileCompanyComponent } from '../company/profile-company/profile-company.component';
+import { ProfileDriverComponent } from '../driver/profile-driver/profile-driver.component';
 
 
 const routes: Routes = [
@@ -17,11 +20,13 @@ const routes: Routes = [
         component: HomeComponent,
         pathMatch: 'full'
       },
+
       {
         path: 'about',
         component: AboutComponent,
         pathMatch: 'full'
       },
+      
       {
         path: 'feedback',
         component: FeedbackComponent,
@@ -44,7 +49,30 @@ const routes: Routes = [
         path: 'advertise',
         component: AdvertiseComponent,
         pathMatch: 'full'
-      }
+      },
+
+      {
+        path: 'account',
+        children: [
+          {
+            path: 'user',
+            component: ProfileUserComponent,
+            pathMatch: 'full'
+          },
+
+          {
+            path: 'company',
+            component: ProfileCompanyComponent,
+            pathMatch: 'full'
+          },
+
+          {
+            path: 'driver',
+            component: ProfileDriverComponent,
+            pathMatch: 'full'
+          }
+        ]
+      },
     ]
   },
 ];

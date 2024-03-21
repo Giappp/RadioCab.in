@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import {} from '@angular/animations'
+import { } from '@angular/animations'
 import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-login',
@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toast:ToastrService,
+    private toast: ToastrService,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.loginForm = this.fb.group({
       email: [''],
       password: [''],
     });
-    
+
   }
 
   ngOnInit() {
@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
       this.authService.loginUserRequest(this.loginForm.value).subscribe(
         (respone: any) => {
           if (respone && respone.data && respone.data.userId && respone.data.token) {
-            this.toast.success("Login Successfully","Login",{
-              timeOut:5000,
+            this.toast.success("Login Successfully", "Login", {
+              timeOut: 5000,
             });
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);

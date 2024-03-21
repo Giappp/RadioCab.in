@@ -9,12 +9,15 @@
         <div class="col mb-3">
             <h5>Contact Us</h5>
             <ul class="nav flex-column">
-                <li class="nav-item mb-2">Phone: <a href="tel:+84912345678" class="nav-link p-0 text-body-secondary">+84
-                        912 345 678</a></li>
-                <li class="nav-item mb-2">Address: <a href="https://example.com"
-                        class="nav-link p-0 text-body-secondary">123 Đường ABC, Thành phố XYZ</a></li>
-                <li class="nav-item mb-2">Email: <a href="mailto:info@example.com"
-                        class="nav-link p-0 text-body-secondary">info example.com</a></li>
+                <li class="nav-item mb-2">Phone:
+                    <a href="tel:{{ phone }}" class="nav-link p-0 text-body-secondary">{{ phone }}</a>
+                </li>
+                <li class="nav-item mb-2">Address:
+                    <a href="https://example.com" class="nav-link p-0 text-body-secondary">{{ address }}</a>
+                </li>
+                <li class="nav-item mb-2">Email:
+                    <a href="mailto:{{ email }}" class="nav-link p-0 text-body-secondary">{{ email }}</a>
+                </li>
             </ul>
         </div>
 
@@ -30,7 +33,7 @@
 
         <div class="col mb-3">
             <h5>About Us</h5>
-            <p class="text-body-secondary">Radiocab.In is a leading provider of electric vehicle transportation
+            <p class="text-body-secondary">Radiocab.In is a leading provider of vehicle transportation
                 services, committed to sustainability and customer satisfaction.</p>
         </div>
     </footer>
