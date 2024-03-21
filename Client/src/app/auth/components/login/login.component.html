@@ -3,17 +3,25 @@
     <form class="mx-auto col-md-5" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <h4 class="text-center">Login</h4>
       <div class="mb-3 mt-5">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
           placeholder="Enter your email" formControlName="email">
-        <div *ngIf="f['email'].hasError">
-          <span class="text-red-500">{{ f['email'].errors }}</span>
+        <div *ngIf="submitted && f['email'].hasError">
+          <ul>
+            <li class="text-red-600" *ngIf="f['email'].hasError('required')">Email is required</li>
+            <li class="text-red-600" *ngIf="f['email'].hasError('email')">Email is not valid</li>
+          </ul>
         </div>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password"
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password"
           formControlName="password">
+          <div *ngIf="submitted && f['password'].hasError">
+            <ul>
+              <li class="text-red-600" *ngIf="f['password'].hasError('required')">Password is required</li>
+            </ul>
+          </div>
         <p><a href="/auth/login/#" class="text-decoration-underline text-primary link-opacity-100-hover">Forget
             password?</a></p>
       </div>

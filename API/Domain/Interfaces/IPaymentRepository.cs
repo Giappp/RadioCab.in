@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IDriverRepository : IGenericRepository<Driver, int>
+    public interface IPaymentRepository : IGenericRepository<Payment, int>
     {
     }
 }

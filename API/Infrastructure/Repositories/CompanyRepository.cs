@@ -25,16 +25,15 @@ namespace Infrastructure.Repositories
         {
             return await Add(company);
         }
-        public async Task<IEnumerable<Driver>> GetDriversFromCompany(int companyId)
+        public async Task<IEnumerable<Driver?>> GetDriversFromCompany(int companyId)
         {
-            //DriverFromCompanyDTO driver = _context.Drivers
-               // .Include(i => i.DriverContracts)
-            throw new NotImplementedException();
+            return await _context.DriverContracts.Where(dc => dc.CompanyId == companyId)
+                .Select(dc => dc.Driver).ToListAsync();
         }
 
-        public Task<IEnumerable<CompanySubscription>> GetSubscriptionsFromCompany()
+        public async Task<IEnumerable<CompanySubscription>?> GetSubscriptionsFromCompany(int companyId)
         {
-            throw new NotImplementedException();
+            return await _context.CompanySubscriptions.Where(cs => cs.CompanyId == companyId).ToListAsync();   
         }
     }
 }

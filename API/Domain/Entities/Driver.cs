@@ -26,9 +26,9 @@ namespace Domain.Entities
         public int MembershipId { get; set; }
         [ForeignKey(nameof(MembershipId))]
         public Membership ?Membership { get; set; }
-        public ICollection<DriverSubscription> ?DriverSubscriptions { get; set; }
-        public ICollection<Cab> ?Cabs { get; set; }
-        public ICollection<DriverContract> ?DriverContracts { get; set; }
+        public IEnumerable<DriverSubscription> ?DriverSubscriptions { get; set; }
+        public IEnumerable<Cab> ?Cabs { get; set; }
+        public IEnumerable<DriverContract> ?DriverContracts { get; set; }
         [NotMapped]
         public bool? IsActive { get; set; }
     }

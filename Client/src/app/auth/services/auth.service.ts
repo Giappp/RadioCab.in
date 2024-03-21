@@ -1,28 +1,54 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, delay, of, tap } from 'rxjs';
-import { IUserResponse } from '../interfaces/iuser-response';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import { User } from '../../models/user';
+import { IUserLogin } from '../interfaces/iuser-login';
+import { Authresponse } from '../interfaces/authresponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = "http://localhost:5164/api/Auth/login";
+  private baseUrl = 'http://localhost:5164';
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  constructor(private http:HttpClient){
-    
+  private isAuthenticated = false;
+  constructor(private http: HttpClient) {
+    this.isAuthenticated = !!localStorage.getItem('jwt');
   }
-  loginUserRequest(data:IUserResponse) : Observable<IUserResponse> {
-    return this.http.post<IUserResponse>(this.baseUrl,data,this.httpOptions).pipe(
-      catchError(this.handleError<IUserResponse>('Failed to login'))
-    )
+  loginUserRequest(data: IUserLogin): Observable<Authresponse> {
+    return this.http
+      .post<Authresponse>(
+        `${this.baseUrl}/api/Auth/login`,
+        data,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<Authresponse>('Failed to login')));
   }
-  private handleError<T>(operation = 'operation', result?: T){
+  registerUserRequest(data: User): Observable<any> {
+    return this.http
+      .post<Authresponse>(
+        `${this.baseUrl}/api/Auth/register`,
+        data,
+        this.httpOptions
+      )
+      .pipe(catchError(this.handleError<Authresponse>('Failed to register')));
+  }
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
     };
+  }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('jwt');
+  }
+  public getAuthentication() {
+    return this.isAuthenticated;
+  }
+  public setAuthenticate(on: boolean) {
+    this.isAuthenticated = on;
   }
 }

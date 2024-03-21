@@ -19,7 +19,7 @@ namespace Infrastructure.Common
             _context = context;
             _logger = logger;
         }
-        public async Task<IEnumerable<T>?>? GetAll()
+        public async Task<IEnumerable<T>?> GetAll()
         {
             return await _context.Set<T>().ToListAsync();
         }

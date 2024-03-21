@@ -17,6 +17,7 @@ export class RegisterCompanyComponent implements OnInit {
     this.companyForm = new FormGroup({
       companyName: new FormControl(null, Validators.required),
       representative: new FormControl(null, Validators.required),
+      designation: new FormControl(null,Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       address: new FormControl(null, Validators.required),
       telephone: new FormControl(null, [Validators.required, Validators.pattern(/^0\d{9}$/)]),

@@ -12,8 +12,6 @@ namespace Application.DTOs.Driver
         public string DriverName {  get; set; }
         public string City {  get; set; }
         public int Experience {  get; set; }
-        public int CompanyId { get; set; }
-        public ICollection<DriverContract> Contracts { get; set; }
 
     }
 }

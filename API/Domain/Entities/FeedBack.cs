@@ -15,6 +15,8 @@ namespace Domain.Entities
         public int FeedBackId { get; set; }
         [Required]
         public int UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public User? User { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public required string Message { get; set; }

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class DriverRepository : GenericRepository<Driver, int>
+    internal class UserRepository : GenericRepository<User,int> , IUserRepository
     {
-        public DriverRepository(AppDbContext context, ILogger logger) : base(context, logger)
+        public UserRepository(AppDbContext context, ILogger logger) : base(context, logger)
         {
         }
     }

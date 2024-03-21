@@ -8,9 +8,9 @@
                 <div class="row g-3">
                     <div class="col-12">
                         <label class="form-label">User name</label>
-                        <input type="text" class="form-control" formControlName="userName"
+                        <input type="text" class="form-control" formControlName="username"
                             placeholder="Enter your name">
-                        <small *ngIf="userForm.get('userName').invalid && userForm.get('userName').touched">*User
+                        <small *ngIf="userForm.get('username').invalid && userForm.get('username').touched">*User
                             name is required.</small>
 
                     </div>
@@ -43,13 +43,6 @@
                         <small *ngIf="userForm.get('phone').invalid && userForm.get('phone').touched">*Phone is
                             required.</small>
                     </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Telephone <span class="text-body-secondary">(Optional)</span></label>
-                        <input type="text" class="form-control" formControlName="telephone"
-                            placeholder="Enter your telephone">
-                    </div>
-
                     <div class="col-12">
                         <label class="form-label">Password</label>
                         <input type="password" class="form-control" formControlName="password"
@@ -74,18 +67,6 @@
                 <hr class="my-4">
 
                 <h4 class="mb-3">Payment Type</h4>
-
-                <div class="my-3">
-                    <div class="form-check">
-                        <input type="radio" value="monthly" class="form-check-input" formControlName="paymentType">
-                        <label class="form-check-label">Monthly</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" value="quarterly" class="form-check-input" formControlName="paymentType">
-                        <label class="form-check-label">Quarterly</label>
-                    </div>
-                </div>
-
                 <hr class="my-4">
 
                 <div class="input-group">

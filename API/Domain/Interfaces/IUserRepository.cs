@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IDriverRepository : IGenericRepository<Driver, int>
+    public interface IUserRepository : IGenericRepository<User,int>
     {
+        
     }
 }

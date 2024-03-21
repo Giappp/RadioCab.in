@@ -8,6 +8,7 @@ import { ActivatedRoute, ChildrenOutletContexts, Router, RouterOutlet } from '@a
   
 })
 export class AppComponent {
+  title="Home Page";
   constructor(private activatedRoute: ActivatedRoute,private router: Router) {}
   isLoginPage(): boolean {    
     return this.activatedRoute.snapshot.firstChild?.routeConfig?.path === 'auth';

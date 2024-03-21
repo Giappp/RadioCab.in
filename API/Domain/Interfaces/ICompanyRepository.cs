@@ -10,7 +10,7 @@ namespace Domain.Interfaces
 {
     public interface ICompanyRepository : IGenericRepository<Company, int>
     {
-        Task<IEnumerable<Driver>> GetDriversFromCompany(int companyId);
+        Task<IEnumerable<Driver>?> GetDriversFromCompany(int companyId);
         Task<IEnumerable<CompanySubscription>> GetSubscriptionsFromCompany(int companyId);
     }
 }
