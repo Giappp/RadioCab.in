@@ -8,42 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations.AppDb
 {
     /// <inheritdoc />
-    public partial class initAppDbContext : Migration
+    public partial class initAppDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Cars",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ModelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cars", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FeedBacks",
-                columns: table => new
-                {
-                    FeedBackId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FeedBackType = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FeedBacks", x => x.FeedBackId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Memberships",
                 columns: table => new
@@ -157,20 +126,57 @@ namespace Infrastructure.Migrations.AppDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Subscriptions",
+                name: "FeedBacks",
                 columns: table => new
                 {
-                    SubscriptionId = table.Column<int>(type: "int", nullable: false)
+                    FeedBackId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlanId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FeedBackType = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subscriptions", x => x.SubscriptionId);
+                    table.PrimaryKey("PK_FeedBacks", x => x.FeedBackId);
                     table.ForeignKey(
-                        name: "FK_Subscriptions_Plans_PlanId",
+                        name: "FK_FeedBacks_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanySubscriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    PlanId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PaymentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanySubscriptions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CompanySubscriptions_Companys_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companys",
+                        principalColumn: "CompanyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanySubscriptions_Payment_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payment",
+                        principalColumn: "PaymentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanySubscriptions_Plans_PlanId",
                         column: x => x.PlanId,
                         principalTable: "Plans",
                         principalColumn: "PlanId",
@@ -199,7 +205,7 @@ namespace Infrastructure.Migrations.AppDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "DriverContract",
+                name: "DriverContracts",
                 columns: table => new
                 {
                     ContractId = table.Column<int>(type: "int", nullable: false)
@@ -211,18 +217,53 @@ namespace Infrastructure.Migrations.AppDb
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DriverContract", x => x.ContractId);
+                    table.PrimaryKey("PK_DriverContracts", x => x.ContractId);
                     table.ForeignKey(
-                        name: "FK_DriverContract_Companys_CompanyId",
+                        name: "FK_DriverContracts_Companys_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companys",
                         principalColumn: "CompanyId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_DriverContract_Drivers_DriverId",
+                        name: "FK_DriverContracts_Drivers_DriverId",
                         column: x => x.DriverId,
                         principalTable: "Drivers",
                         principalColumn: "DriverId",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DriverSubscriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DriverId = table.Column<int>(type: "int", nullable: false),
+                    PlanId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PaymentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DriverSubscriptions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DriverSubscriptions_Drivers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "Drivers",
+                        principalColumn: "DriverId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DriverSubscriptions_Payment_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payment",
+                        principalColumn: "PaymentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DriverSubscriptions_Plans_PlanId",
+                        column: x => x.PlanId,
+                        principalTable: "Plans",
+                        principalColumn: "PlanId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -265,68 +306,6 @@ namespace Infrastructure.Migrations.AppDb
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "CompanySubscription",
-                columns: table => new
-                {
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
-                    SubscriptionId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompanySubscription", x => new { x.CompanyId, x.SubscriptionId });
-                    table.ForeignKey(
-                        name: "FK_CompanySubscription_Companys_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Companys",
-                        principalColumn: "CompanyId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CompanySubscription_Payment_PaymentId",
-                        column: x => x.PaymentId,
-                        principalTable: "Payment",
-                        principalColumn: "PaymentId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CompanySubscription_Subscriptions_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "Subscriptions",
-                        principalColumn: "SubscriptionId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DriverSubscription",
-                columns: table => new
-                {
-                    DriverId = table.Column<int>(type: "int", nullable: false),
-                    SubscriptionId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DriverSubscription", x => new { x.DriverId, x.SubscriptionId });
-                    table.ForeignKey(
-                        name: "FK_DriverSubscription_Drivers_DriverId",
-                        column: x => x.DriverId,
-                        principalTable: "Drivers",
-                        principalColumn: "DriverId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DriverSubscription_Payment_PaymentId",
-                        column: x => x.PaymentId,
-                        principalTable: "Payment",
-                        principalColumn: "PaymentId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DriverSubscription_Subscriptions_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "Subscriptions",
-                        principalColumn: "SubscriptionId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Memberships",
                 columns: new[] { "MemberShipId", "MembershipDescription", "MembershipName" },
@@ -356,23 +335,28 @@ namespace Infrastructure.Migrations.AppDb
                 column: "MembershipId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanySubscription_PaymentId",
-                table: "CompanySubscription",
-                column: "PaymentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CompanySubscription_SubscriptionId",
-                table: "CompanySubscription",
-                column: "SubscriptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DriverContract_CompanyId",
-                table: "DriverContract",
+                name: "IX_CompanySubscriptions_CompanyId",
+                table: "CompanySubscriptions",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DriverContract_DriverId",
-                table: "DriverContract",
+                name: "IX_CompanySubscriptions_PaymentId",
+                table: "CompanySubscriptions",
+                column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanySubscriptions_PlanId",
+                table: "CompanySubscriptions",
+                column: "PlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DriverContracts_CompanyId",
+                table: "DriverContracts",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DriverContracts_DriverId",
+                table: "DriverContracts",
                 column: "DriverId");
 
             migrationBuilder.CreateIndex(
@@ -381,14 +365,24 @@ namespace Infrastructure.Migrations.AppDb
                 column: "MembershipId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DriverSubscription_PaymentId",
-                table: "DriverSubscription",
+                name: "IX_DriverSubscriptions_DriverId",
+                table: "DriverSubscriptions",
+                column: "DriverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DriverSubscriptions_PaymentId",
+                table: "DriverSubscriptions",
                 column: "PaymentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DriverSubscription_SubscriptionId",
-                table: "DriverSubscription",
-                column: "SubscriptionId");
+                name: "IX_DriverSubscriptions_PlanId",
+                table: "DriverSubscriptions",
+                column: "PlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeedBacks_UserId",
+                table: "FeedBacks",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rentals_DriverId",
@@ -404,11 +398,6 @@ namespace Infrastructure.Migrations.AppDb
                 name: "IX_Rentals_UserId",
                 table: "Rentals",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Subscriptions_PlanId",
-                table: "Subscriptions",
-                column: "PlanId");
         }
 
         /// <inheritdoc />
@@ -418,16 +407,13 @@ namespace Infrastructure.Migrations.AppDb
                 name: "Cabs");
 
             migrationBuilder.DropTable(
-                name: "Cars");
+                name: "CompanySubscriptions");
 
             migrationBuilder.DropTable(
-                name: "CompanySubscription");
+                name: "DriverContracts");
 
             migrationBuilder.DropTable(
-                name: "DriverContract");
-
-            migrationBuilder.DropTable(
-                name: "DriverSubscription");
+                name: "DriverSubscriptions");
 
             migrationBuilder.DropTable(
                 name: "FeedBacks");
@@ -439,7 +425,7 @@ namespace Infrastructure.Migrations.AppDb
                 name: "Companys");
 
             migrationBuilder.DropTable(
-                name: "Subscriptions");
+                name: "Plans");
 
             migrationBuilder.DropTable(
                 name: "Drivers");
@@ -449,9 +435,6 @@ namespace Infrastructure.Migrations.AppDb
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Plans");
 
             migrationBuilder.DropTable(
                 name: "Memberships");

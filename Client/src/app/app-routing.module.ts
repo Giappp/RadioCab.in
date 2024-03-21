@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'user/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'user',

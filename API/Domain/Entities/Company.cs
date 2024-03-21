@@ -27,7 +27,7 @@ namespace Domain.Entities
         public int MembershipId { get; set; }
         [ForeignKey(nameof(MembershipId))]
         public Membership ?Membership { get; set; }
-        public ICollection<CompanySubscription> ?CompanySubscriptions { get; set; }
-        public ICollection<DriverContract> ?DriverContracts { get; set; }
+        public IEnumerable<CompanySubscription> ?CompanySubscriptions { get; set; }
+        public IEnumerable<DriverContract> ?DriverContracts { get; set; }
     }
 }

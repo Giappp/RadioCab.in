@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240315033222_initAppDbContext")]
-    partial class initAppDbContext
+    [Migration("20240320035839_initAppDb")]
+    partial class initAppDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,26 +49,6 @@ namespace Infrastructure.Migrations.AppDb
                     b.HasIndex("DriverId");
 
                     b.ToTable("Cabs");
-                });
-
-            modelBuilder.Entity("Domain.Entities.CarModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("Domain.Entities.Company", b =>
@@ -122,22 +102,36 @@ namespace Infrastructure.Migrations.AppDb
 
             modelBuilder.Entity("Domain.Entities.CompanySubscription", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubscriptionId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PaymentId")
                         .HasColumnType("int");
 
-                    b.HasKey("CompanyId", "SubscriptionId");
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("PaymentId");
 
-                    b.HasIndex("SubscriptionId");
+                    b.HasIndex("PlanId");
 
-                    b.ToTable("CompanySubscription");
+                    b.ToTable("CompanySubscriptions");
                 });
 
             modelBuilder.Entity("Domain.Entities.Driver", b =>
@@ -214,27 +208,41 @@ namespace Infrastructure.Migrations.AppDb
 
                     b.HasIndex("DriverId");
 
-                    b.ToTable("DriverContract");
+                    b.ToTable("DriverContracts");
                 });
 
             modelBuilder.Entity("Domain.Entities.DriverSubscription", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("DriverId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubscriptionId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PaymentId")
                         .HasColumnType("int");
 
-                    b.HasKey("DriverId", "SubscriptionId");
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DriverId");
 
                     b.HasIndex("PaymentId");
 
-                    b.HasIndex("SubscriptionId");
+                    b.HasIndex("PlanId");
 
-                    b.ToTable("DriverSubscription");
+                    b.ToTable("DriverSubscriptions");
                 });
 
             modelBuilder.Entity("Domain.Entities.FeedBack", b =>
@@ -263,6 +271,8 @@ namespace Infrastructure.Migrations.AppDb
                         .HasColumnType("int");
 
                     b.HasKey("FeedBackId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("FeedBacks");
                 });
@@ -405,30 +415,6 @@ namespace Infrastructure.Migrations.AppDb
                     b.ToTable("Rentals");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Subscription", b =>
-                {
-                    b.Property<int>("SubscriptionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubscriptionId"));
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("SubscriptionId");
-
-                    b.HasIndex("PlanId");
-
-                    b.ToTable("Subscriptions");
-                });
-
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -486,9 +472,9 @@ namespace Infrastructure.Migrations.AppDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Subscription", "Subscription")
-                        .WithMany("CompanySubscriptions")
-                        .HasForeignKey("SubscriptionId")
+                    b.HasOne("Domain.Entities.Plan", "Plan")
+                        .WithMany()
+                        .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -496,7 +482,7 @@ namespace Infrastructure.Migrations.AppDb
 
                     b.Navigation("Payment");
 
-                    b.Navigation("Subscription");
+                    b.Navigation("Plan");
                 });
 
             modelBuilder.Entity("Domain.Entities.Driver", b =>
@@ -543,9 +529,9 @@ namespace Infrastructure.Migrations.AppDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Subscription", "Subscription")
-                        .WithMany("DriverSubscriptions")
-                        .HasForeignKey("SubscriptionId")
+                    b.HasOne("Domain.Entities.Plan", "Plan")
+                        .WithMany()
+                        .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -553,7 +539,18 @@ namespace Infrastructure.Migrations.AppDb
 
                     b.Navigation("Payment");
 
-                    b.Navigation("Subscription");
+                    b.Navigation("Plan");
+                });
+
+            modelBuilder.Entity("Domain.Entities.FeedBack", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Rental", b =>
@@ -583,17 +580,6 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Subscription", b =>
-                {
-                    b.HasOne("Domain.Entities.Plan", "Plan")
-                        .WithMany()
-                        .HasForeignKey("PlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Plan");
-                });
-
             modelBuilder.Entity("Domain.Entities.Company", b =>
                 {
                     b.Navigation("CompanySubscriptions");
@@ -606,13 +592,6 @@ namespace Infrastructure.Migrations.AppDb
                     b.Navigation("Cabs");
 
                     b.Navigation("DriverContracts");
-
-                    b.Navigation("DriverSubscriptions");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Subscription", b =>
-                {
-                    b.Navigation("CompanySubscriptions");
 
                     b.Navigation("DriverSubscriptions");
                 });
