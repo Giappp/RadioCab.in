@@ -59,12 +59,13 @@ export class LoginComponent implements OnInit {
       //const {email,password} = this.loginForm.value;
       this.authService.loginUserRequest(this.loginForm.value).subscribe(
         (respone: any) => {
-          if (respone && respone.data && respone.data.userId && respone.data.token) {
+          if (respone && respone.data && respone.data.userName && respone.data.token) {
             this.toast.success("Login Successfully", "Login", {
               timeOut: 5000,
             });
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);
+            localStorage.setItem('currentUser',JSON.stringify(respone.data))
             this.authService.setAuthenticate(true);
             this.router.navigate(['/user/home']);
           } else {

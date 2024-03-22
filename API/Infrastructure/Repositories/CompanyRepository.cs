@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class CompanyRepository : GenericRepository<Company,int>
+    public class CompanyRepository : GenericRepository<Company,int>,ICompanyRepository
     {
-        public CompanyRepository(AppDbContext context, ILogger logger) : base(context, logger)
+        public CompanyRepository(AppDbContext context, ILogger<CompanyRepository> logger) : base(context, logger)
         {
         }
 

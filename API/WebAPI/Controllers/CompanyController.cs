@@ -16,8 +16,9 @@ namespace WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpGet("GetAllCompanies")]
-        public async Task<IActionResult> GetAllCompanies([FromBody] GetAllCompanyQuery request)
+        public async Task<IActionResult> GetAllCompanies()
         {
+            var request = new GetAllCompanyQuery();
             return Ok(await _mediator.Send(request));
         }
         [HttpGet("GetAllDriversFromCompany")]
