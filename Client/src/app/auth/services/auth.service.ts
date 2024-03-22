@@ -13,17 +13,17 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  private currentUserSubject: BehaviorSubject<string>;
-  public currentUser: Observable<string>;
+  private currentUserSubject: BehaviorSubject<Authresponse>;
+  public currentUser: Observable<Authresponse>;
   private isAuthenticated = false;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<string>((localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<Authresponse>((JSON.parse(localStorage.getItem('currentUser'))));
     this.currentUser = this.currentUserSubject.asObservable();
     this.isAuthenticated = !!localStorage.getItem('jwt');
   }
 
-  public get currentUserValue(): string {
+  public get currentUserValue(): Authresponse {
     return this.currentUserSubject.value;
   }
 
@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   getUserName(): string {
-    return this.currentUserSubject.value ? this.currentUserSubject.value : '';
+    return this.currentUserSubject.value ? this.currentUserSubject.value.userName : '';
   }
 
   setAuthenticate(value: boolean) {

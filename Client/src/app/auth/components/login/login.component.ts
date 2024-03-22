@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             });
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);
-            localStorage.setItem('currentUser',respone.data.userName)
+            localStorage.setItem('currentUser',JSON.stringify(respone.data))
             this.authService.setAuthenticate(true);
             this.router.navigate(['/user/home']);
           } else {
