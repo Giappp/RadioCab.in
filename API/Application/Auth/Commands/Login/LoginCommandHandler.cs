@@ -33,7 +33,8 @@ namespace Application.Auth.Commands.Login
             }
             string token = _tokenGenerator.CreateJwtSecurityToken(userId) ?? string.Empty;
             string? userName = await _identityService.GetUserNameAsync(userId);
-            return ServiceResult.Success(new LoginCommandRespone { Token = token, UserName =  userName, UserId = userId});
+            IList<string> userRole = await _identityService.GetUserRolesAsync(userId);
+            return ServiceResult.Success(new LoginCommandRespone { Token = token, UserName =  userName, UserId = userId, UserRole = userRole});
         }
     }
 }
