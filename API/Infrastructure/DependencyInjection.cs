@@ -1,6 +1,9 @@
 ﻿using Application.Common.Interfaces;
+using Domain.Interfaces;
+using Infrastructure.Common;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Infrastructure.Repositories;
 using Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -20,11 +23,13 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddLogging();
         services.AddSingleton<AuthDbContextFactory>();
         services.AddSingleton<AppDbContextFactory>();
         services.AddTransient<ITokenGenerator, TokenGenerator>();
         services.AddTransient<IIdentityService, IdentityService>();
-        services.AddLogging();
+        services.AddScoped<ICompanyRepository,CompanyRepository>();
+        services.AddScoped<IDriverRepository,DriverRepository>();
         // Configure AuthDbContext using AuthDbContextFactory
         services.AddDbContext<AuthDbContext>((provider, options) =>
         {

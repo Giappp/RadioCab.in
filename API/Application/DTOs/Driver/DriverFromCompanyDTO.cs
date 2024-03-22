@@ -12,6 +12,9 @@ namespace Application.DTOs.Driver
         public string DriverName {  get; set; }
         public string City {  get; set; }
         public int Experience {  get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

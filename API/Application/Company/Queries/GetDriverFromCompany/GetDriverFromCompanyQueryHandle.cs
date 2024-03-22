@@ -7,40 +7,49 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Company.Queries.GetDriverFromCompany
 {
-    internal class GetDriverFromCompanyQueryHandle : IRequestHandler<GetDriverFromCompanyQuery, IEnumerable<DriverFromCompanyDTO>>
+    internal class GetDriverFromCompanyQueryHandler : IRequestHandler<GetDriverFromCompanyQuery, IEnumerable<DriverFromCompanyDTO>>
     {
         private readonly ICompanyRepository _companyRepository;
-        public GetDriverFromCompanyQueryHandle(ICompanyRepository companyRepository)
+
+        public GetDriverFromCompanyQueryHandler(ICompanyRepository companyRepository)
         {
-            _companyRepository = companyRepository;
+            _companyRepository = companyRepository ?? throw new ArgumentNullException(nameof(companyRepository));
         }
+
         public async Task<IEnumerable<DriverFromCompanyDTO>> Handle(GetDriverFromCompanyQuery request, CancellationToken cancellationToken)
         {
-            var driver = await _companyRepository.GetDriversFromCompany(request.CompanyId);
-            var dtos = new List<DriverFromCompanyDTO>();
-            if (driver != null)
+            var drivers = await _companyRepository.GetDriversFromCompany(request.CompanyId);
+
+            if (drivers == null || !drivers.Any())
+                return Enumerable.Empty<DriverFromCompanyDTO>(); // Return an empty enumerable if no drivers found
+
+            var driverDTOs = new List<DriverFromCompanyDTO>();
+
+            foreach (var driver in drivers)
             {
-                foreach(Driver d in driver)
+                var activeContract = driver.DriverContracts.FirstOrDefault(dc =>
+                    dc.CompanyId == request.CompanyId && dc.EndDate > DateTime.UtcNow);
+
+                var inactiveContract = driver.DriverContracts.FirstOrDefault(dc =>
+                    dc.CompanyId == request.CompanyId && dc.EndDate < DateTime.UtcNow);
+
+                var dto = new DriverFromCompanyDTO
                 {
-                    var dto = new DriverFromCompanyDTO()
-                    {
-                        City = d.City,
-                        DriverName = d.DriverName,
-                        Experience = d.Experience,
-                    };
-                    dtos.Add(dto);
-                }
-                return dtos;
+                    City = driver.City,
+                    DriverName = driver.DriverName,
+                    Experience = driver.Experience,
+                    StartDate = activeContract?.StartDate ?? DateTime.MinValue, // Use null coalescing operator to handle null case
+                    EndDate = inactiveContract?.EndDate ?? DateTime.MinValue // Use null coalescing operator to handle null case
+                };
+
+                driverDTOs.Add(dto);
             }
-            else
-            {
-                return null;
-            }
+            return driverDTOs;
         }
     }
 }

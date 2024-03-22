@@ -44,6 +44,7 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('jwt');
+    this.isAuthenticated = false;
   }
   public getAuthentication() {
     return this.isAuthenticated;

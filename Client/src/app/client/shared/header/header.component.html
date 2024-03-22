@@ -14,9 +14,12 @@
             <li class="nav-item"><a routerLink="/user/advertise" class="nav-link">Advertise</a></li>
             <li class="nav-item"><a routerLink="/user/feedback" class="nav-link">Feedback</a></li>
         </ul>
-        <div class="text-end">
+        <div class="text-end" *ngIf="!isLoggedIn()">
             <a [routerLink]="['/auth/login']" class="btn btn-outline-primary me-2">Login</a>
             <a [routerLink]="['/auth/register-role']" class="btn btn-primary">Signup</a>
+        </div>
+        <div class="text-end" *ngIf="isLoggedIn()">
+            <button (click)="loggedOut()">Log Out</button>
         </div>
     </header>
 </div>
