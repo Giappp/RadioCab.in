@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-
+  address: string = '123 Đường ABC, Thành phố XYZ';
+  email: string = 'info@example.com';
+  phone: string = '+84912345678';
 }
