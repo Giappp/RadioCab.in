@@ -10,6 +10,7 @@ namespace Application.Common.Interfaces
     {
         Task<string?> GetUserEmailAsync(string userId);
         Task<string?> GetUserIdAsync(string email);
+        Task<string?> GetUserNameAsync(string userId);
         Task<bool> IsInRoleAsync(string userId, string role);
         Task<bool> AuthorizeAsync(string userId, string policyName);
         Task<bool> CheckPasswordAsync(string userId, string password);

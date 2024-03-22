@@ -32,7 +32,8 @@ namespace Application.Auth.Commands.Login
                 return ServiceResult.Failed<LoginCommandRespone>(ServiceError.WrongUserNameOrPassword);
             }
             string token = _tokenGenerator.CreateJwtSecurityToken(userId) ?? string.Empty;
-            return ServiceResult.Success(new LoginCommandRespone { Token = token, UserId = userId });
+            string? userName = await _identityService.GetUserNameAsync(userId);
+            return ServiceResult.Success(new LoginCommandRespone { Token = token, UserName =  userName});
         }
     }
 }

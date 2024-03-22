@@ -1,5 +1,5 @@
 export interface Authresponse {
     token:string;
-    userId:string;
+    username:string;
 }
 

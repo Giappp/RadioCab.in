@@ -9,6 +9,6 @@ namespace Application.Auth.Commands.Login
     public class LoginCommandRespone
     {
         public required string Token { get; init; }
-        public required string UserId { get; init; }
+        public required string UserName { get; init; }
     }
 }

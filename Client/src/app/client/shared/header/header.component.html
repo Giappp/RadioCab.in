@@ -16,22 +16,19 @@
         </ul>
         
         <div class="text-end">
-            <a *ngIf="!isLoggedIn" [routerLink]="['/auth/login']" class="btn btn-outline-primary me-2">Login</a>
-            <a *ngIf="!isLoggedIn" [routerLink]="['/auth/register-role']" class="btn btn-primary">Signup</a>
-            <div *ngIf="isLoggedIn" class="dropdown">
-                <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            <a *ngIf="!isLoggedIn()" [routerLink]="['/auth/login']" class="btn btn-outline-primary me-2">Login</a>
+            <a *ngIf="!isLoggedIn()" [routerLink]="['/auth/register-role']" class="btn btn-primary">Signup</a>
+            <div class="dropdown" *ngIf="isLoggedIn()">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     {{ userName }}
-                </a>
-
+                </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" [routerLink]="['/user/profile']">Profile</a></li>
                     <li><a class="dropdown-item" (click)="logout()">Signout</a></li>
                 </ul>
             </div>
-        </div>
-        <div class="text-end" *ngIf="isLoggedIn()">
-            <button (click)="loggedOut()">Log Out</button>
+            
         </div>
     </header>
 </div>

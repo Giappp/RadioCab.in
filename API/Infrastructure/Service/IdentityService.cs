@@ -81,9 +81,10 @@ namespace Infrastructure.Service
             return user?.Id;
         }
 
-        public Task<IList<string>> GetUserRolesAsync(string userId)
+        public async Task<IList<string>> GetUserRolesAsync(string userId)
         {
-            throw new NotImplementedException();
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            return await _userManager.GetRolesAsync(user);
         }
 
         public async Task<bool> IsInRoleAsync(string userId, string role)
@@ -109,6 +110,11 @@ namespace Infrastructure.Service
             }
             return result.Succeeded ? user.Id : null;
         }
-        
+
+        public async Task<string?> GetUserNameAsync(string userId)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            return user != null ? user.UserName : null;
+        }
     }
 }
