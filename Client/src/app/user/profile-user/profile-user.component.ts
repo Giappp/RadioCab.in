@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './profile-user.component.css'
 })
 export class ProfileUserComponent {
-
+ username: string = 'A';
+ email: string = 'A@example.com';
 }
