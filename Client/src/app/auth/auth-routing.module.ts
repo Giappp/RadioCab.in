@@ -5,6 +5,7 @@ import { RegisterCompanyComponent } from './components/register-company/register
 import { RegisterDriverComponent } from './components/register-driver/register-driver.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RegisterRoleComponent } from './components/register-role/register-role.component';
+import { authGuardGuard } from './guard/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -13,26 +14,31 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        canActivate: [authGuardGuard],
         pathMatch: 'full'
       },
       {
         path: 'register-company',
         component: RegisterCompanyComponent,
+        canActivate: [authGuardGuard],
         pathMatch: 'full'
       },
       {
         path: 'register-driver',
         component: RegisterDriverComponent,
+        canActivate: [authGuardGuard],
         pathMatch: 'full'
       },
       {
         path: 'register-user',
         component: RegisterUserComponent,
+        canActivate: [authGuardGuard],
         pathMatch: 'full'
       },
       {
         path: 'register-role',
         component: RegisterRoleComponent,
+        canActivate: [authGuardGuard],
         pathMatch: 'full'
       }
     ]

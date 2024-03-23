@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { User } from '../../models/user';
 import { IUserLogin } from '../interfaces/iuser-login';
 import { Authresponse } from '../interfaces/authresponse';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,10 @@ export class AuthService {
   };
   private currentUserSubject: BehaviorSubject<Authresponse>;
   public currentUser: Observable<Authresponse>;
-  private isAuthenticated = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
     this.currentUserSubject = new BehaviorSubject<Authresponse>((JSON.parse(localStorage.getItem('currentUser'))));
     this.currentUser = this.currentUserSubject.asObservable();
-    this.isAuthenticated = !!localStorage.getItem('jwt');
   }
 
   public get currentUserValue(): Authresponse {
@@ -60,11 +59,11 @@ export class AuthService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.isAuthenticated = false;
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    const token = localStorage.getItem('jwt');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   getUserName(): string {
