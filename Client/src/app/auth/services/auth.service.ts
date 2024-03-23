@@ -10,11 +10,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private baseUrl = 'http://localhost:5164';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
   private currentUserSubject: BehaviorSubject<Authresponse>;
   public currentUser: Observable<Authresponse>;
 
@@ -24,6 +27,9 @@ export class AuthService {
   }
 
   public get currentUserValue(): Authresponse {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
     return this.currentUserSubject.value;
   }
 
@@ -74,9 +80,6 @@ export class AuthService {
     return this.http.get<any>('url-to-your-api-endpoint');
   }
 
-  setAuthenticate(value: boolean) {
-    this.isAuthenticated = value;
-  }
   getUserRole(): Array<string> {
     return this.currentUserValue.userRole;
   }
@@ -84,5 +87,9 @@ export class AuthService {
   getUserInfo(userId: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/api/User/${userId}`, this.httpOptions)
       .pipe(catchError(this.handleError<User>('Failed to get user info')));
+  }
+
+  getEarnings(): Observable<any> {
+    return this.http.get<any>('URL_TO_GET_EARNINGS_DATA');
   }
 }

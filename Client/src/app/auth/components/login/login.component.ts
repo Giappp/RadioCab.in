@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { Observable, of, timeInterval } from 'rxjs';
@@ -7,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { } from '@angular/animations'
 import { DOCUMENT } from '@angular/common';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),this.passwordValidator]]
+      password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]]
     })
   }
 
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
             });
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);
-            localStorage.setItem('currentUser',JSON.stringify(respone.data))
+            localStorage.setItem('currentUser', JSON.stringify(respone.data))
             Swal.fire({
               title: "Login",
               text: "Login Successfully!",

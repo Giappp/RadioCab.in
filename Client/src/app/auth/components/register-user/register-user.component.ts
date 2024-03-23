@@ -60,7 +60,6 @@ export class RegisterUserComponent implements OnInit {
       ) {
         this.userForm.reset();
         localStorage.setItem('jwt', response.data.token);
-        this.auth.setAuthenticate(true);
         this.router.navigate(['/home']);
       }
     });
