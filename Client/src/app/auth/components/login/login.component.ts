@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { Observable, of, timeInterval } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { } from '@angular/animations'
 import { DOCUMENT } from '@angular/common';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator]]
+      password: ['', [Validators.required, Validators.minLength(8),this.passwordValidator]]
     })
   }
 
@@ -66,10 +67,20 @@ export class LoginComponent implements OnInit {
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);
             localStorage.setItem('currentUser',JSON.stringify(respone.data))
-            this.authService.setAuthenticate(true);
-            this.router.navigate(['/home']);
+            Swal.fire({
+              title: "Login",
+              text: "Login Successfully!",
+              icon: "success"
+            }).then(() => {
+              this.router.navigate(['/home']);
+            })
           } else {
-            this.errorMessage = 'Invalid username or password';
+            this.errorMessage = 'Invalid email or password';
+            Swal.fire({
+              title: "Login",
+              text: this.errorMessage,
+              icon: "error",
+            })
           }
         },
         error => {
