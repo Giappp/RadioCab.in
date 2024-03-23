@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+
 import { User } from '../../models/user';
 import { IUserLogin } from '../interfaces/iuser-login';
 import { Authresponse } from '../interfaces/authresponse';
@@ -70,10 +71,19 @@ export class AuthService {
     return this.currentUserSubject.value ? this.currentUserSubject.value.userName : '';
   }
 
+  getAdminName(): Observable<any> { // get admin name
+    return this.http.get<any>('url-to-your-api-endpoint');
+  }
+
   setAuthenticate(value: boolean) {
     this.isAuthenticated = value;
   }
   getUserRole(): Array<string> {
     return this.currentUserValue.userRole;
+  }
+
+  getUserInfo(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/api/User/${userId}`, this.httpOptions)
+      .pipe(catchError(this.handleError<User>('Failed to get user info')));
   }
 }

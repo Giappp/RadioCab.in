@@ -11,6 +11,7 @@ export class HeaderComponent {
   //isLoggedIn: boolean = false;
   userName: string = '';
   userId: string = '';
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class HeaderComponent {
     // If user is logged in, get user's name
     if (this.authService.isLoggedIn()) {
       this.userName = this.authService.getUserName(); // Replace with method to get user's name
-      this.userId = this.authService.currentUserValue.userId 
+      this.userId = this.authService.currentUserValue.userId
     }
   }
 
@@ -29,10 +30,12 @@ export class HeaderComponent {
     this.authService.setAuthenticate(false);
     this.router.navigate(['/home']); // Redirect to login page after logout
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.authService.isLoggedIn();
   }
-  loggedOut(){
+
+  loggedOut() {
     this.authService.logout();
     this.router.navigate(['/home']);
   }

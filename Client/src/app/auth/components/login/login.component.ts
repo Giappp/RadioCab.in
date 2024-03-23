@@ -1,16 +1,21 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { } from '@angular/animations';
+
 import { Observable, of } from 'rxjs';
+
 import { ToastrService } from 'ngx-toastr';
-import { } from '@angular/animations'
-import { DOCUMENT } from '@angular/common';
+
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent implements OnInit {
   submitted: boolean = false;
   loginForm!: FormGroup;
@@ -31,7 +36,6 @@ export class LoginComponent implements OnInit {
       email: [''],
       password: [''],
     });
-
   }
 
   ngOnInit() {
@@ -65,7 +69,7 @@ export class LoginComponent implements OnInit {
             });
             this.loginForm.reset();
             localStorage.setItem('jwt', respone.data.token);
-            localStorage.setItem('currentUser',JSON.stringify(respone.data))
+            localStorage.setItem('currentUser', JSON.stringify(respone.data))
             this.authService.setAuthenticate(true);
             this.router.navigate(['/home']);
           } else {
