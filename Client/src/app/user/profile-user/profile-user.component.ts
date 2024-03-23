@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileUserComponent implements OnInit {
   userId: string;
+  userName: string;
   constructor(private authService:AuthService,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('userId');
