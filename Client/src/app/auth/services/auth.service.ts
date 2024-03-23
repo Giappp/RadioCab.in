@@ -59,6 +59,7 @@ export class AuthService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.isAuthenticated = false;
   }
 
   isLoggedIn(): boolean {
@@ -71,5 +72,8 @@ export class AuthService {
 
   setAuthenticate(value: boolean) {
     this.isAuthenticated = value;
+  }
+  getUserRole(): Array<string> {
+    return this.currentUserValue.userRole;
   }
 }

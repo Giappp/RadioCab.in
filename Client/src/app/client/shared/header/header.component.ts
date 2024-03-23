@@ -10,7 +10,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 export class HeaderComponent {
   //isLoggedIn: boolean = false;
   userName: string = '';
-
+  userId: string = '';
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,19 +20,20 @@ export class HeaderComponent {
     // If user is logged in, get user's name
     if (this.authService.isLoggedIn()) {
       this.userName = this.authService.getUserName(); // Replace with method to get user's name
+      this.userId = this.authService.currentUserValue.userId 
     }
   }
 
   logout() {
     this.authService.logout(); // Call the logout method from your authentication service
     this.authService.setAuthenticate(false);
-    this.router.navigate(['/user/home']); // Redirect to login page after logout
+    this.router.navigate(['/home']); // Redirect to login page after logout
   }
   isLoggedIn(){
     return this.authService.isLoggedIn();
   }
   loggedOut(){
     this.authService.logout();
-    this.router.navigate(['user/home']);
+    this.router.navigate(['/home']);
   }
 }

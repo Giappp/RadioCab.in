@@ -6,14 +6,14 @@ import { authGuardGuard } from './guard/auth-guard.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user/home',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
     path: 'user',
-    loadChildren: () =>
-      import('./client/client.module').then((m) => m.ClientModule),
     canActivate: [authGuardGuard],
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'auth',
@@ -23,6 +23,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

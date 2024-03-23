@@ -13,7 +13,7 @@ import { ProfileDriverComponent } from '../driver/profile-driver/profile-driver.
 
 const routes: Routes = [
   {
-    path: 'user',
+    path: '',
     children: [
       {
         path: 'home',
@@ -51,28 +51,28 @@ const routes: Routes = [
         pathMatch: 'full'
       },
 
-      {
-        path: 'account',
-        children: [
-          {
-            path: 'user',
-            component: ProfileUserComponent,
-            pathMatch: 'full'
-          },
+      // {
+      //   path: 'account',
+      //   children: [
+      //     {
+      //       path: 'user',
+      //       component: ProfileUserComponent,
+      //       pathMatch: 'full'
+      //     },
 
-          {
-            path: 'company',
-            component: ProfileCompanyComponent,
-            pathMatch: 'full'
-          },
+      //     {
+      //       path: 'company',
+      //       component: ProfileCompanyComponent,
+      //       pathMatch: 'full'
+      //     },
 
-          {
-            path: 'driver',
-            component: ProfileDriverComponent,
-            pathMatch: 'full'
-          }
-        ]
-      },
+      //     {
+      //       path: 'driver',
+      //       component: ProfileDriverComponent,
+      //       pathMatch: 'full'
+      //     }
+      //   ]
+      // },
     ]
   },
 ];

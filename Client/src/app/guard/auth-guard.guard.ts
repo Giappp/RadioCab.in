@@ -1,19 +1,18 @@
 import { Injectable, inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateChildFn, CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 
-@Injectable()
-class AuthGuard {
-  constructor(private authService: AuthService, private router: Router) {}
-  canActivate() : boolean{
-    if(this.authService.isLoggedIn()){
-      return true;
-    }else{
-      this.router.navigate(['auth/login']);
-      return false;
-    }
-  }
-}
+// @Injectable()
+// export class AuthGuard {
+//   constructor(private authService: AuthService, private router: Router) {}
+//   canActivate() : boolean{
+//     if(this.authService.isLoggedIn()){
+//       return true;
+//     }else{
+//       return false;
+//     }
+//   }
+// }
 export const authGuardGuard: CanActivateFn = (route, state) => {
-  return inject(AuthGuard).canActivate();
+  return inject(AuthService).isLoggedIn() ? true : inject(Router).createUrlTree(['/auth/login']);
 };

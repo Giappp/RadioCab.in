@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('jwt', respone.data.token);
             localStorage.setItem('currentUser',JSON.stringify(respone.data))
             this.authService.setAuthenticate(true);
-            this.router.navigate(['/user/home']);
+            this.router.navigate(['/home']);
           } else {
             this.errorMessage = 'Invalid username or password';
           }

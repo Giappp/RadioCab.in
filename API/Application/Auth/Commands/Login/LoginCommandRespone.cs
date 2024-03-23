@@ -11,5 +11,6 @@ namespace Application.Auth.Commands.Login
         public required string Token { get; init; }
         public required string UserName { get; init; }
         public required string UserId { get; init; }
+        public required IList<string> UserRole {  get; init; }
     }
 }
