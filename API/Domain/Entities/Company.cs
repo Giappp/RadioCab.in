@@ -17,6 +17,8 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CompanyId { get; set; }
         [Required]
+        public string IdentityId { get; set; }
+        [Required]
         public required string CompanyName { get; set; }
         [Required]
         public required string ContactPerson {  get; set; }
@@ -28,6 +30,7 @@ namespace Domain.Entities
         [ForeignKey(nameof(MembershipId))]
         public Membership ?Membership { get; set; }
         public IEnumerable<CompanySubscription> ?CompanySubscriptions { get; set; }
+        public IEnumerable<CompanyService>? CompanyServices { get; set; }
         public IEnumerable<DriverContract> ?DriverContracts { get; set; }
     }
 }

@@ -6,56 +6,19 @@
         <div class="col-md-7 col-lg-8">
             <form [formGroup]="companyForm" (ngSubmit)="OnFormSubmit()">
                 <div class="row g-3">
-                    <div class="col-12">
-                        <label class="form-label">Company Name</label>
-                        <input type="text" class="form-control" formControlName="companyName"
-                            placeholder="Enter your company name">
-                        <small
-                            *ngIf="companyForm.get('companyName').invalid && companyForm.get('companyName').touched">*Company
-                            name is required.</small>
-                    </div>
 
                     <div class="col-12">
-                        <label class="form-label">Representative</label>
-                        <input type="text" class="form-control" formControlName="representative"
-                            placeholder="Enter your representative">
-                        <small
-                            *ngIf="companyForm.get('representative').invalid && companyForm.get('representative').touched">*Representative
-                            is required.</small>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="you@example.com">
-                        <small *ngIf="companyForm.get('email').invalid && companyForm.get('email').touched">*Email is
+                        <label class="form-label">Display Name: </label>
+                        <input type="displayName" class="form-control" formControlName="displayName">
+                        <small *ngIf="companyForm.get('displayName').invalid && companyForm.get('displayName').touched">*Display Name is
                             required.</small>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label">Address</label>
-                        <input type="text" class="form-control" formControlName="address"
-                            placeholder="Enter your address">
-                        <small *ngIf="companyForm.get('address').invalid && companyForm.get('address').touched">*Address
-                            is required.</small>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Telephone</label>
-                        <input type="text" class="form-control" formControlName="telephone"
-                            placeholder="Enter your telephone">
-                        <small
-                            *ngIf="companyForm.get('telephone').invalid && companyForm.get('telephone').touched">*Telephone
-                            is required.</small>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Phone <span class="text-body-secondary">(Optional)</span></label>
-                        <input type="text" class="form-control" formControlName="phone" placeholder="Enter your phone">
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Fax <span class="text-body-secondary">(Optional)</span></label>
-                        <input type="text" class="form-control" formControlName="fax" placeholder="Enter your fax">
+                        <label class="form-label">Company Email: </label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="you@example.com">
+                        <small *ngIf="companyForm.get('email').invalid && companyForm.get('email').touched">*Email is
+                            required.</small>
                     </div>
 
                     <div class="col-12">
@@ -78,24 +41,6 @@
                             do not match.</small>
                     </div>
                 </div>
-
-                <hr class="my-4">
-
-                <h4 class="mb-3">Payment Type</h4>
-
-                <div class="my-3">
-                    <div class="form-check">
-                        <input type="radio" value="monthly" class="form-check-input" formControlName="paymentType">
-                        <label class="form-check-label">Monthly</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" value="quarterly" class="form-check-input" formControlName="paymentType">
-                        <label class="form-check-label">Quarterly</label>
-                    </div>
-                </div>
-
-                <hr class="my-4">
-
                 <div class="input-group">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" formControlName="checkbox">

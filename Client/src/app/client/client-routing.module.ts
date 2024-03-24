@@ -6,9 +6,7 @@ import { FeedbackComponent } from './features/feedback/feedback.component';
 import { CabcompanyComponent } from './features/cabcompany/cabcompany.component';
 import { DriversComponent } from './features/drivers/drivers.component';
 import { AdvertiseComponent } from './features/advertise/advertise.component';
-import { ProfileUserComponent } from '../user/profile-user/profile-user.component';
-import { ProfileCompanyComponent } from '../company/profile-company/profile-company.component';
-import { ProfileDriverComponent } from '../driver/profile-driver/profile-driver.component';
+
 
 
 const routes: Routes = [
@@ -34,7 +32,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'company',
+        path: 'listing',
         component: CabcompanyComponent,
         pathMatch: 'full'
       },

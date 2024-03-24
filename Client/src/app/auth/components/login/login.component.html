@@ -6,18 +6,18 @@
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email"
           formControlName="email" [ngClass]="{'is-invalid': (f['email'].dirty || f['email'].touched || submitted) && f['email'].invalid}">
-        <div *ngIf="f['email'].dirty || f['email'].touched || submitted">
+        <div *ngIf="f['email'].touched || submitted">
           <ul class="mt-1.5 list-disc list-inside">
             <li class="text-red-600" *ngIf="f['email'].hasError('required')">Email is required</li>
             <li class="text-red-600" *ngIf="f['email'].errors">Email is not valid</li>
           </ul>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3">  
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Enter your password"
           formControlName="password" [ngClass]="{'is-invalid': (f['password'].dirty || f['password'].touched || submitted) && f['password'].invalid}">
-        <div *ngIf="f['password'].dirty || f['password'].touched || submitted">
+        <div *ngIf=" f['password'].hasError && submitted">
           <span class="font-medium">Password is invalid! Ensure that these requirements are met:</span>
           <ul class="mt-1.5 list-disc list-inside">
             <li class="text-red-600" *ngIf="f['password'].errors">At least 8 characters (and up to 100 characters)</li>
@@ -30,7 +30,7 @@
             password?</a></p>
       </div>
       <button type="submit" class="btn btn-outline-primary mt-4"
-        [disabled]="loginForm.invalid || submitted">Login</button>
+        [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
 

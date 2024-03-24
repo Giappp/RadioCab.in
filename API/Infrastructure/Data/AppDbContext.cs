@@ -20,6 +20,7 @@ namespace Infrastructure.Data
         public DbSet<FeedBack> FeedBacks { get; private set; }
         public DbSet<Membership> Memberships { get; private set; }
         public DbSet<Plan> Plans { get; private set; }
+        public DbSet<CompanyService> CompanyServices { get; private set; }
         public DbSet<Payment> Payment { get; private set; }
         public DbSet<Rental> Rentals { get; private set; }
         public DbSet<User> Users { get; private set; }

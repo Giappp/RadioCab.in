@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { appGuard } from './guard/app.guard';
+import { companyGuard } from './company/guard/company.guard';
 
 
 const routes: Routes = [
@@ -18,7 +19,11 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-  }
+  },
+  {
+    path:  'company',
+    loadChildren: () => import('./company/company.module').then((m) => m.CompanyModule),
+  },
 ];
 
 @NgModule({

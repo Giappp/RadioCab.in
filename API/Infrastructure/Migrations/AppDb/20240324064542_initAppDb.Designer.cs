@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240320035839_initAppDb")]
+    [Migration("20240324064542_initAppDb")]
     partial class initAppDb
     {
         /// <inheritdoc />
@@ -86,6 +86,10 @@ namespace Infrastructure.Migrations.AppDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("MembershipId")
                         .HasColumnType("int");
 
@@ -98,6 +102,28 @@ namespace Infrastructure.Migrations.AppDb
                     b.HasIndex("MembershipId");
 
                     b.ToTable("Companys");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CompanyService", b =>
+                {
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CompanyId");
+
+                    b.ToTable("CompanyService");
                 });
 
             modelBuilder.Entity("Domain.Entities.CompanySubscription", b =>
@@ -167,6 +193,10 @@ namespace Infrastructure.Migrations.AppDb
 
                     b.Property<int>("Experience")
                         .HasColumnType("int");
+
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MembershipId")
                         .HasColumnType("int");
@@ -423,6 +453,10 @@ namespace Infrastructure.Migrations.AppDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -456,6 +490,17 @@ namespace Infrastructure.Migrations.AppDb
                         .IsRequired();
 
                     b.Navigation("Membership");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CompanyService", b =>
+                {
+                    b.HasOne("Domain.Entities.Company", "Company")
+                        .WithMany("CompanyServices")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Domain.Entities.CompanySubscription", b =>
@@ -582,6 +627,8 @@ namespace Infrastructure.Migrations.AppDb
 
             modelBuilder.Entity("Domain.Entities.Company", b =>
                 {
+                    b.Navigation("CompanyServices");
+
                     b.Navigation("CompanySubscriptions");
 
                     b.Navigation("DriverContracts");

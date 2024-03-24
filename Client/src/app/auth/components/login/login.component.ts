@@ -61,19 +61,22 @@ export class LoginComponent implements OnInit {
       this.authService.loginUserRequest(this.loginForm.value).subscribe(
         (respone: any) => {
           if (respone && respone.data && respone.data.userName && respone.data.token) {
-            this.toast.success("Login Successfully", "Login", {
-              timeOut: 5000,
-            });
-            this.loginForm.reset();
-            localStorage.setItem('jwt', respone.data.token);
-            localStorage.setItem('currentUser',JSON.stringify(respone.data))
             Swal.fire({
               title: "Login",
               text: "Login Successfully!",
               icon: "success"
-            }).then(() => {
-              this.router.navigate(['/home']);
-            })
+            }).then(
+              () => {
+                if(respone.data.userRole[0] === 'User'){
+                  this.router.navigate(['/home'])
+                }else if(respone.data.userRole[0] === 'Company'){
+                  this.router.navigate(['company/dashboard'])
+                }
+                else if(respone.data.userRole[0] === 'Driver'){
+                  this.router.navigate(['/driver'])
+                }
+              }
+            ).finally(() => this.loginForm.reset());
           } else {
             this.errorMessage = 'Invalid email or password';
             Swal.fire({

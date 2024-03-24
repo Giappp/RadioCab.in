@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { filter } from 'rxjs';
@@ -9,7 +9,6 @@ import { filter } from 'rxjs';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  //isLoggedIn: boolean = false;
   userName: string = '';
   userId: string = '';
   constructor(private authService: AuthService, private router: Router) { }
@@ -20,7 +19,7 @@ export class HeaderComponent implements OnInit {
     ).subscribe(() => {
       // Check if user is logged in
       if (this.authService.isLoggedIn()) {
-        this.userName = this.authService.getUserName();
+        this.userName = this.authService.currentUserValue.userName;
         this.userId = this.authService.currentUserValue.userId;
       } else {
         // Clear user data if not logged in
@@ -31,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
     // Check if user is logged in on component initialization
     if (this.authService.isLoggedIn()) {
-      this.userName = this.authService.getUserName();
+      this.userName = this.authService.currentUserValue.userName;
       this.userId = this.authService.currentUserValue.userId;
     }
   }
@@ -44,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
   isLoggedIn() : boolean{
     if(this.authService.isLoggedIn()){
-      this.userName = this.authService.getUserName();
+      this.userName = this.authService.currentUserValue.userName;
       this.userId = this.authService.currentUserValue.userId;
       return true;
     }

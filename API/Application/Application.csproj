@@ -13,9 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Auth\Commands\Register\DriverRegister\" />
-    <Folder Include="Auth\Commands\Register\CompanyRegister\" />
-    <Folder Include="Company\Commands\" />
     <Folder Include="Driver\Commands\" />
   </ItemGroup>
 
