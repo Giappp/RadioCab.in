@@ -11,6 +11,7 @@ import { filter } from 'rxjs';
 export class HeaderComponent implements OnInit {
   userName: string = '';
   userId: string = '';
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {

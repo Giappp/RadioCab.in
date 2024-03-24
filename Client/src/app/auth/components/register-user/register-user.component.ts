@@ -1,12 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../../models/user';
 import { response } from 'express';
@@ -19,6 +15,7 @@ import { UserRegister } from '../../interfaces/user-register';
   templateUrl: './register-user.component.html',
   styleUrl: './register-user.component.css',
 })
+
 export class RegisterUserComponent implements OnInit {
   userForm: FormGroup;
   submitted: boolean = false;
@@ -27,7 +24,7 @@ export class RegisterUserComponent implements OnInit {
     private http: HttpClient,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userForm = new FormGroup({
@@ -101,5 +98,9 @@ export class RegisterUserComponent implements OnInit {
       const confirmPassword = control.value;
       return password === confirmPassword ? null : { passwordMismatch: true };
     };
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

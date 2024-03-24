@@ -10,8 +10,10 @@ import { RoleRegister } from '../interfaces/roleregister';
 @Injectable({
   providedIn: 'root' || 'any',
 })
+
 export class AuthService {
   private baseUrl = 'http://localhost:5164';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -96,7 +98,21 @@ export class AuthService {
   getUserName(): string {
     return this.currentUserSubject$.value ? this.currentUserSubject$.value.userName : '';
   }
+
+  getAdminName(): Observable<any> { // get admin name
+    return this.http.get<any>('url-to-your-api-endpoint');
+  }
+
   getUserRole(): Array<string> {
     return this.currentUserSubject$.value.userRole;
+  }
+
+  getUserInfo(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/api/User/${userId}`, this.httpOptions)
+      .pipe(catchError(this.handleError<User>('Failed to get user info')));
+  }
+
+  getEarnings(): Observable<any> {
+    return this.http.get<any>('URL_TO_GET_EARNINGS_DATA');
   }
 }

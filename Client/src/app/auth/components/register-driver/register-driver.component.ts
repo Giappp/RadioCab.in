@@ -42,4 +42,8 @@ export class RegisterDriverComponent implements OnInit {
       return password === confirmPassword ? null : { 'passwordMismatch': true };
     }
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

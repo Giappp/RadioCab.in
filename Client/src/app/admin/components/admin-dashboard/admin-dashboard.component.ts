@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent {
+  earningsData: any;
 
+  constructor(private dataService: AuthService) { }
+
+  ngOnInit(): void {
+    this.dataService.getEarnings().subscribe(data => {
+      this.earningsData = data;
+    });
+  }
 }

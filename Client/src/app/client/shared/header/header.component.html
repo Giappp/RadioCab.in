@@ -14,21 +14,20 @@
             <li class="nav-item"><a [routerLink]="['/advertise']" class="nav-link">Advertise</a></li>
             <li class="nav-item"><a [routerLink]="['/feedback']" class="nav-link">Feedback</a></li>
         </ul>
-        
+
         <div class="text-end">
             <a *ngIf="!isLoggedIn()" [routerLink]="['/auth/login']" class="btn btn-outline-primary me-2">Login</a>
             <a *ngIf="!isLoggedIn()" [routerLink]="['/auth/register-role']" class="btn btn-primary">Signup</a>
             <div class="dropdown" *ngIf="isLoggedIn()">
                 <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuLink"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ userName }}
+                    data-bs-toggle="dropdown" aria-expanded="false">{{ userName }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" [routerLink]="['/user/profile', userId]">Profile</a></li>
+                    <!-- <li *ngIf="isAdmin"><a class="dropdown-item" [routerLink]="['/admin/dashboard']">Dashboard</a></li> -->
                     <li><a class="dropdown-item" (click)="logout()">Signout</a></li>
                 </ul>
             </div>
-            
         </div>
     </header>
 </div>
