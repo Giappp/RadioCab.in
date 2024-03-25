@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../../models/user';
-import { response } from 'express';
+import Swal from 'sweetalert2';
+import { UserRegister } from '../../interfaces/user-register';
 
 @Component({
   selector: 'app-register-user',
@@ -43,6 +42,7 @@ export class RegisterUserComponent implements OnInit {
         Validators.required,
         this.passwordMatchValidator(),
       ]),
+      role: new FormControl('User')
     });
   }
 
@@ -51,7 +51,17 @@ export class RegisterUserComponent implements OnInit {
     if (!this.userForm.valid) {
       return;
     }
-    this.auth.registerUserRequest(this.userForm.value).subscribe((response) => {
+    const requestData:UserRegister = {
+        userName: this.userForm.value.username,
+        email: this.userForm.value.email,
+        address: this.userForm.value.address,
+        city: this.userForm.value.city,
+        phone: this.userForm.value.phone,
+        password: this.userForm.value.password,
+        confirmPassword: this.userForm.value.confirmPass, // Use confirmPassword instead of confirmPass
+        role: 'User'
+    };
+    this.auth.registerUserRequest(requestData).subscribe((response) => {
       if (
         response &&
         response.data &&
@@ -59,8 +69,19 @@ export class RegisterUserComponent implements OnInit {
         response.data.token
       ) {
         this.userForm.reset();
-        localStorage.setItem('jwt', response.data.token);
-        this.router.navigate(['/home']);
+        Swal.fire({
+          title: "Register",
+          text: "Register Successfully!",
+          icon: "success"
+        }).then(() => {
+          this.router.navigate(['auth/login']);
+        })
+      }else{
+        Swal.fire({
+          title: "Register",
+          text: "Register Failed!",
+          icon: "error"
+        })
       }
     });
   }

@@ -9,37 +9,32 @@ import { authGuardGuard } from './guard/auth-guard.guard';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: '',
     children: [
       {
         path: 'login',
         component: LoginComponent,
         canActivate: [authGuardGuard],
-        pathMatch: 'full'
       },
       {
         path: 'register-company',
         component: RegisterCompanyComponent,
         canActivate: [authGuardGuard],
-        pathMatch: 'full'
       },
       {
         path: 'register-driver',
         component: RegisterDriverComponent,
         canActivate: [authGuardGuard],
-        pathMatch: 'full'
       },
       {
         path: 'register-user',
         component: RegisterUserComponent,
         canActivate: [authGuardGuard],
-        pathMatch: 'full'
       },
       {
         path: 'register-role',
         component: RegisterRoleComponent,
         canActivate: [authGuardGuard],
-        pathMatch: 'full'
       }
     ]
   }

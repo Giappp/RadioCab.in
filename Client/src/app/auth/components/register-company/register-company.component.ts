@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { RoleRegister } from '../../interfaces/roleregister';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-company',
@@ -11,28 +15,53 @@ export class RegisterCompanyComponent implements OnInit {
 
   companyForm: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService:AuthService,private router:Router) { }
 
   ngOnInit() {
     this.companyForm = new FormGroup({
-      companyName: new FormControl(null, Validators.required),
-      representative: new FormControl(null, Validators.required),
-      designation: new FormControl(null,Validators.required),
+      displayName: new FormControl(null,[Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      address: new FormControl(null, Validators.required),
-      telephone: new FormControl(null, [Validators.required, Validators.pattern(/^0\d{9}$/)]),
-      phone: new FormControl(null, Validators.pattern(/^0\d{9}$/)),
-      fax: new FormControl(null, Validators.pattern(/^\+?\d{1,3}(\s?\(\d{1,4}\))?\s?\d{1,10}$/)),
-      paymentType: new FormControl('monthly'),
       checkbox: new FormControl(false, Validators.requiredTrue),
-
       password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*-_+=])[A-Za-z\d!@#$%^&*-_+=]{8,}$/)]),
       confirmPass: new FormControl(null, [Validators.required, this.passwordMatchValidator()]),
     });
   }
 
   OnFormSubmit() {
-    console.log(this.companyForm);
+    if(this.companyForm.invalid){
+      return;
+    }
+    const data:RoleRegister = {
+      DisplayName: this.companyForm.value.displayName,
+      email: this.companyForm.value.email,
+      password: this.companyForm.value.password,
+      confirmPassword: this.companyForm.value.confirmPass,
+      role: 'Company'
+    }
+    this.authService.registerRoleRequest(data).subscribe((response) => {
+      console.log(response);
+      if (
+        response && 
+        response.data &&
+        response.data.userId &&
+        response.data.token
+      ) {
+        Swal.fire({
+          title: "Register",
+          text: "Register Successfully!",
+          icon: "success"
+        }).then(() => {
+          this.router.createUrlTree(['get-started/company']);
+        })
+        .finally(() => this.companyForm.reset());
+      }else{
+        Swal.fire({
+          title: "Register",
+          text: "Register Failed!",
+          icon: "error"
+        })
+      }
+    })
   };
 
   passwordMatchValidator(): ValidatorFn {

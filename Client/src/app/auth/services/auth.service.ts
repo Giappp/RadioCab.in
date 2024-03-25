@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
-
-import { User } from '../../models/user';
+import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { IUserLogin } from '../interfaces/iuser-login';
 import { Authresponse } from '../interfaces/authresponse';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserRegister } from '../interfaces/user-register';
+import { RoleRegister } from '../interfaces/roleregister';
+import { User } from '../../models/user';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root' || 'any',
 })
 
 export class AuthService {
@@ -17,20 +18,16 @@ export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-
-  private currentUserSubject: BehaviorSubject<Authresponse>;
-  public currentUser: Observable<Authresponse>;
-
+  private currentUserSubject$: BehaviorSubject<Authresponse>;
+  public currentUser$: Observable<Authresponse>;
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
-    this.currentUserSubject = new BehaviorSubject<Authresponse>((JSON.parse(localStorage.getItem('currentUser'))));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUserSubject$ = new BehaviorSubject<Authresponse>((JSON.parse(localStorage.getItem('currentUser'))));
+    this.currentUser$ = this.currentUserSubject$.asObservable();
   }
 
-  public get currentUserValue(): Authresponse {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    return this.currentUserSubject.value;
+  public get currentUserValue() {
+    this.currentUserSubject$.next(JSON.parse(localStorage.getItem('currentUser')));
+    return this.currentUserSubject$.value;
   }
 
   loginUserRequest(data: IUserLogin): Observable<Authresponse> {
@@ -40,17 +37,44 @@ export class AuthService {
         data,
         this.httpOptions
       )
-      .pipe(catchError(this.handleError<Authresponse>('Failed to login')));
+      .pipe(map((response:any) => {
+        localStorage.setItem('jwt', response.data.token);
+        localStorage.setItem('currentUser',JSON.stringify(response.data));
+        this.currentUserSubject$.next(JSON.parse(localStorage.getItem('currentUser')));
+        return response;
+      }),catchError(this.handleError<Authresponse>('Failed to login')));
   }
 
-  registerUserRequest(data: User): Observable<any> {
+  registerUserRequest(data: UserRegister): Observable<any> {
     return this.http
       .post<Authresponse>(
         `${this.baseUrl}/api/Auth/register`,
         data,
         this.httpOptions
       )
-      .pipe(catchError(this.handleError<Authresponse>('Failed to register')));
+      .pipe(map((response: any) => {
+        localStorage.setItem('jwt', response.data.token);
+        localStorage.setItem('currentUser',JSON.stringify(response.data));
+        this.currentUserSubject$.next(JSON.parse(localStorage.getItem('currentUser')));
+        return response;
+      }),
+        catchError(this.handleError<Authresponse>('Failed to register')));
+  }
+
+  registerRoleRequest(data: RoleRegister) : Observable<any>{
+    return this.http
+      .post<Authresponse>(
+        `${this.baseUrl}/api/Auth/register/Role`,
+        data,
+        this.httpOptions
+      )
+      .pipe(map((response:any) => {
+        localStorage.setItem('jwt', response.data.token);
+        localStorage.setItem('currentUser',JSON.stringify(response.data));
+        this.currentUserSubject$.next(JSON.parse(localStorage.getItem('currentUser')));
+        return response;
+      }),
+        catchError(this.handleError<Authresponse>('Failed to register')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -64,7 +88,7 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('jwt');
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.currentUserSubject$.next(null);
   }
 
   isLoggedIn(): boolean {
@@ -73,7 +97,7 @@ export class AuthService {
   }
 
   getUserName(): string {
-    return this.currentUserSubject.value ? this.currentUserSubject.value.userName : '';
+    return this.currentUserSubject$.value ? this.currentUserSubject$.value.userName : '';
   }
 
   getAdminName(): Observable<any> { // get admin name
@@ -81,7 +105,7 @@ export class AuthService {
   }
 
   getUserRole(): Array<string> {
-    return this.currentUserValue.userRole;
+    return this.currentUserSubject$.value.userRole;
   }
 
   getUserInfo(userId: string): Observable<User> {

@@ -17,5 +17,6 @@ namespace Application.Common.Interfaces
         Task<bool?> ChangePasswordAsync(string userId, string currentPassword,string newPassword);
         Task<IList<string>> GetUserRolesAsync(string userId);
         Task<string?> CreateUserAsync(string userName, string email, string password, string phone, string role);
+        Task<string?> CreateUserAsync(string userName, string email, string password, string role);
     }
 }

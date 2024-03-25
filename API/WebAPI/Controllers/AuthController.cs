@@ -1,4 +1,5 @@
 ﻿using Application.Auth.Commands.Login;
+using Application.Auth.Commands.Register.CompanyRegister;
 using Application.Auth.Commands.Register.UserRegister;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +27,12 @@ namespace WebAPI.Controllers
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] UserRegisterCommandRequest request)
+        {
+            return Ok(await _mediator.Send(request));
+        }
+        [HttpPost("register/Role")]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterRole([FromBody] RoleRegisterCommandRequest request)
         {
             return Ok(await _mediator.Send(request));
         }

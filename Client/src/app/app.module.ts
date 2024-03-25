@@ -13,10 +13,13 @@ import { ToastrComponentlessModule, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CompanyModule } from './company/company.module';
+import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +31,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SharedModule,
     ClientModule,
     UserModule,
+    CompanyModule,
     AuthModule,
     ToastrModule.forRoot({positionClass: 'inline'}),
-    ToastrComponentlessModule
+    ToastrComponentlessModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),

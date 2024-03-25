@@ -15,6 +15,8 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DriverId { get; set; }
         [Required]
+        public string IdentityId { get; set; }
+        [Required]
         public required string DriverName { get; set; }
         [Required]
         public required string ContactPerson { get; set; }

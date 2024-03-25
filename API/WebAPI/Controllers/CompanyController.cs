@@ -1,4 +1,5 @@
-﻿using Application.Company.Queries.GetAllCompany;
+﻿using Application.Company.Commands.CheckIdentityCompany;
+using Application.Company.Queries.GetAllCompany;
 using Application.Company.Querries.GetDriverFromCompany;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,11 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetDriverFromCompany([FromBody] GetDriverFromCompanyQuery query)
         {
             return Ok(await _mediator.Send(query));
+        }
+        [HttpPost("CheckIdentityCompany")]
+        public async Task<IActionResult> CheckIdentityCompany([FromBody] CheckIdentityCompanyRequest request)
+        {
+            return Ok(await _mediator.Send(request));
         }
     }
 }

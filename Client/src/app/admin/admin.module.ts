@@ -16,6 +16,9 @@ import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.com
   imports: [
     CommonModule,
     AdminRoutingModule
+  ],
+  exports: [
+    AdminNavbarComponent
   ]
 })
 export class AdminModule { }

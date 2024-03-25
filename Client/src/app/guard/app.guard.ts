@@ -10,9 +10,7 @@ export const appGuard: CanActivateFn = (route, state) => {
     const roles = route.data['permittedRoles'] as Array<string>;
     const userRole = auth.currentUserValue.userRole[0];
 
-    if(roles && !roles.includes(userRole)){
-      return false;
-    }else{
+    if(roles && roles.includes(userRole)){
       return true;
     }
   }

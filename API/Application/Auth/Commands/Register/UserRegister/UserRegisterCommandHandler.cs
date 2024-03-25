@@ -26,13 +26,15 @@ namespace Application.Auth.Commands.Register.UserRegister
             {
                 return ServiceResult.Failed<RegisterCommandResponse>(ServiceError.EmailAlreadyExists);
             }
-            var resultId = await _identityService.CreateUserAsync(request.UserName, request.Email, request.Password, request.Phone, request.Role);
+            var resultId = await _identityService.CreateUserAsync(request.UserName, request.Email, request.Password, request.Phone,request.Role);
             if(resultId == null)
             {
                 return ServiceResult.Failed<RegisterCommandResponse>(ServiceError.UserFailedToCreate);
             }
             string token = _tokenGenerator.CreateJwtSecurityToken(resultId) ?? string.Empty;
-            return ServiceResult.Success(new RegisterCommandResponse { Token = token, UserId = resultId });
+            string userName = await _identityService.GetUserNameAsync(userId);
+            IList<string> userRole = await _identityService.GetUserRolesAsync(userId);
+            return ServiceResult.Success(new RegisterCommandResponse { Token = token, UserId = resultId ,DisplayName = userName, UserRole = userRole});
         }
     }
 }

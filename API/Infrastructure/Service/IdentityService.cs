@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -115,6 +116,25 @@ namespace Infrastructure.Service
         {
             ApplicationUser? user = await _userManager.FindByIdAsync(userId);
             return user != null ? user.UserName : null;
+        }
+
+        public async Task<string?> CreateUserAsync(string userName, string email, string password, string role)
+        {
+            ApplicationUser user = new ApplicationUser
+            {
+                UserName = userName,
+                Email = email,
+            };
+            IdentityResult result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                var roles = await _userManager.AddToRoleAsync(user, role);
+            }
+            else
+            {
+                await Console.Out.WriteLineAsync(result.ToString());
+            }
+            return result.Succeeded ? user.Id : null;
         }
     }
 }

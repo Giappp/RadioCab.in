@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Company Details</h2>
+    </div>
+    <div class="d-flex mx-4 justify-content-center">
+        <div class="col-md-7 col-lg-8">
+            <form [formGroup]="companyForm" (ngSubmit)="OnFormSubmit()">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-control" formControlName="companyName"
+                            placeholder="Enter your company name">
+                        <small
+                            *ngIf="companyForm.get('companyName').invalid && companyForm.get('companyName').touched">*Company
+                            name is required.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Representative</label>
+                        <input type="text" class="form-control" formControlName="representative"
+                            placeholder="Enter your representative">
+                        <small
+                            *ngIf="companyForm.get('representative').invalid && companyForm.get('representative').touched">*Representative
+                            is required.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Designation</label>
+                        <input type="text" class="form-control" formControlName="designation"
+                            placeholder="Enter your Designation">
+                        <small
+                            *ngIf="companyForm.get('designation').invalid && companyForm.get('designation').touched">*Designation
+                            is required.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" formControlName="address"
+                            placeholder="Enter your address">
+                        <small *ngIf="companyForm.get('address').invalid && companyForm.get('address').touched">*Address
+                            is required.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Telephone</label>
+                        <input type="text" class="form-control" formControlName="telephone"
+                            placeholder="Enter your telephone">
+                        <small
+                            *ngIf="companyForm.get('telephone').invalid && companyForm.get('telephone').touched">*Telephone
+                            is required.</small>
+                            <small *ngIf="f['telephone'].errors">Telephone is invalid</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Phone <span class="text-body-secondary">(Optional)</span></label>
+                        <input type="text" class="form-control" formControlName="phone" placeholder="Enter your phone">
+                        <small *ngIf="f['phone'].errors">Telephone is invalid</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Fax <span class="text-body-secondary">(Optional)</span></label>
+                        <input type="text" class="form-control" formControlName="fax" placeholder="Enter your fax">
+                        <small *ngIf="f['fax'].errors">Telephone is invalid</small>
+                    </div>
+                </div>
+                <hr class="my-4">
+
+                <div class="input-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" formControlName="checkbox">
+                        <label class="form-check-label text-secondary"></label>Read and
+                        accept <a href="#">Terms </a>and <a href="#">Privacy Policy.</a>
+                    </div>
+                </div>
+                <button class="w-100 btn btn-outline-primary btn-lg" type="submit"
+                    [disabled]="companyForm.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
