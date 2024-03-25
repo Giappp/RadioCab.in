@@ -4,10 +4,11 @@ import { CompanyDashboardComponent } from './components/company-dashboard/compan
 import { CompanyServicesComponent } from './components/company-services/company-services.component';
 import { companyGuard } from './guard/company.guard';
 import { GetStartedComponent } from './components/get-started/get-started.component';
+import { StartedPlanComponent } from './components/started-plan/started-plan.component';
 
 const routes: Routes = [
   {
-    path: 'company/dashboard',
+    path: 'dashboard',
     component: CompanyDashboardComponent,
     pathMatch: 'full',
     data: {
@@ -16,7 +17,7 @@ const routes: Routes = [
     canActivate: [companyGuard]
   },
   {
-    path: 'company/services',
+    path: 'services',
     component: CompanyServicesComponent,
     pathMatch: 'full',
     data: {
@@ -25,8 +26,16 @@ const routes: Routes = [
     canActivate: [companyGuard]
   },
   {
-    path: 'company/get-started',
+    path: 'get-started',
     component: GetStartedComponent,
+    data: {
+      permittedRoles: ['company'],
+    },
+    pathMatch: 'full'
+  },
+  {
+    path: 'started-plans',
+    component: StartedPlanComponent,
     data: {
       permittedRoles: ['company'],
     },

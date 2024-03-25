@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
+import { Companycreate } from '../interfaces/companycreate';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class CompanyServiceService {
         return response;
       })
     )
+  }
+  createCompany(company:Companycreate) : Observable<any>{
+    //return this.http.post(${this.baseUrl}/)
+    return null;
   }
 }

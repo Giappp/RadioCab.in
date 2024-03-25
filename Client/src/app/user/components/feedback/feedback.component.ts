@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,8 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './feedback.component.html',
   styleUrl: './feedback.component.css'
 })
-export class FeedbackComponent implements OnInit {
-
+export class FeedbackComponent {
   feedbackForm: FormGroup;
 
   constructor(private http: HttpClient) { }

@@ -13,7 +13,7 @@ export class AppComponent {
   isAdminLoggedIn: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
-    this.authService.currentUser.subscribe(user => {
+    this.authService.currentUser$.subscribe(user => {
       this.isAdminLoggedIn = user && user.userRole.includes('admin');
     });
   }

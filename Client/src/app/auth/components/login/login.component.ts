@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
             }).then(
               () => {
                 if(respone.data.userRole[0] === 'User'){
-                  this.router.navigate(['/home'])
+                  this.router.navigate(['user/home'])
                 }else if(respone.data.userRole[0] === 'Company'){
                   this.router.navigate(['company/dashboard'])
                 }

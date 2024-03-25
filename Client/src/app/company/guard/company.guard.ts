@@ -19,6 +19,6 @@ export const companyGuard: CanActivateFn = (route, state) => {
       }
     }))
   }else{
-    return router.navigate(['/home']);
+    return router.navigate(['user/home']);
   }
 };

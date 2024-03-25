@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',
-  styleUrls: ['./drivers.component.css']
+  styleUrl: './drivers.component.css'
 })
 export class DriversComponent {
   drivers: { description: string }[] = [];

@@ -2,11 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../../models/user';
-import { response } from 'express';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UserRegister } from '../../interfaces/user-register';
 

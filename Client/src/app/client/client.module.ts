@@ -3,40 +3,25 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ClientRoutingModule } from './client-routing.module';
-import { HomeComponent } from './features/home/home.component';
-import { AboutComponent } from './features/about/about.component';
-import { CabcompanyComponent } from './features/cabcompany/cabcompany.component';
-import { FeedbackComponent } from './features/feedback/feedback.component';
-import { DriversComponent } from './features/drivers/drivers.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { AdvertiseComponent } from './features/advertise/advertise.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    AboutComponent,
-    CabcompanyComponent,
-    FeedbackComponent,
-    DriversComponent,
     HeaderComponent,
     FooterComponent,
-    AdvertiseComponent
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
   ],
   exports: [
-    HomeComponent,
-    AboutComponent,
-    CabcompanyComponent,
-    FeedbackComponent,
-    DriversComponent,
     HeaderComponent,
     FooterComponent
   ]

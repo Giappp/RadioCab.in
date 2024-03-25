@@ -6,6 +6,7 @@ import { Authresponse } from '../interfaces/authresponse';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserRegister } from '../interfaces/user-register';
 import { RoleRegister } from '../interfaces/roleregister';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root' || 'any',

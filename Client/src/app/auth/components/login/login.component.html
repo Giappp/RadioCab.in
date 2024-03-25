@@ -17,7 +17,7 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Enter your password"
           formControlName="password" [ngClass]="{'is-invalid': (f['password'].dirty || f['password'].touched || submitted) && f['password'].invalid}">
-        <div *ngIf=" f['password'].hasError && submitted">
+        <div *ngIf="f['password'].hasError && submitted">
           <span class="font-medium">Password is invalid! Ensure that these requirements are met:</span>
           <ul class="mt-1.5 list-disc list-inside">
             <li class="text-red-600" *ngIf="f['password'].errors">At least 8 characters (and up to 100 characters)</li>

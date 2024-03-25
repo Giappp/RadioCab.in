@@ -7,6 +7,7 @@ import { CompanyDashboardComponent } from './components/company-dashboard/compan
 import { CompanyServicesComponent } from './components/company-services/company-services.component';
 import { GetStartedComponent } from './components/get-started/get-started.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StartedPlanComponent } from './components/started-plan/started-plan.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileCompanyComponent,
     CompanyDashboardComponent,
     CompanyServicesComponent,
-    GetStartedComponent
+    GetStartedComponent,
+    StartedPlanComponent
   ],
   imports: [
     CommonModule,

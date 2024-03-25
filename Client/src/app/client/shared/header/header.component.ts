@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout(); // Call the logout method from your authentication service
     this.userName = '';
     this.userId = '';
-    this.router.navigate(['/home']); // Redirect to login page after logout
+    this.router.navigate(['user/home']); // Redirect to login page after logout
   }
   isLoggedIn() : boolean{
     if(this.authService.isLoggedIn()){
