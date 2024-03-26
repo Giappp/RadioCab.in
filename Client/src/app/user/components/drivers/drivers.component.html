@@ -1,15 +1,10 @@
 <main>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Driver Listing</h1>
-                <p class="lead text-body-secondary">List of drivers who have passed recruitment and are working for
-                    RadioCab.In.</p>
-                <input type="text" class="form-control mb-3" placeholder="Search drivers..."
-                    (keyup)="searchDriver($event)">
-            </div>
-        </div>
-    </section>
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light text-center">Driver Listing</h1>
+        <p class="lead text-body-secondary text-center">List of drivers who have passed recruitment and are working for
+            RadioCab.In.</p>
+        <input type="text" class="form-control mb-3" placeholder="Search drivers..." (keyup)="searchDriver($event)">
+    </div>
 
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
@@ -30,5 +25,6 @@
             </div>
         </div>
     </div>
-
+    <mat-paginator [length]="drivers.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)"></mat-paginator>
 </main>

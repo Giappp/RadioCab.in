@@ -9,7 +9,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CabcompanyComponent } from './components/cabcompany/cabcompany.component';
 import { AdvertiseComponent } from './components/advertise/advertise.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
+    MatPaginatorModule
   ]
 })
 export class UserModule { }

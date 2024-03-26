@@ -25,11 +25,12 @@
             <li class="text-red-600" *ngIf="f['password'].hasError('invalidPassword')">Inclusion of at least one special character</li>
           </ul>
         </div>
+        <hr class="my-4">
         <p><a [routerLink]="['/auth/login/']"
             class="text-decoration-underline text-primary link-opacity-100-hover">Forget
             password?</a></p>
       </div>
-      <button type="submit" class="btn btn-outline-primary mt-4"
+      <button type="submit" class="btn btn-outline-primary"
         [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
