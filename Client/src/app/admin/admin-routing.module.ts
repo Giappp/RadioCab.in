@@ -7,7 +7,7 @@ import { ManageDriversComponent } from './components/manage-drivers/manage-drive
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: AdminNavbarComponent,
     canActivate: [],
 

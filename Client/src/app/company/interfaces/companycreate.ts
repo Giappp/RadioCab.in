@@ -6,4 +6,5 @@ export interface Companycreate {
     telephone:string;
     phone:string;
     fax:string;
+    membershipId?:number;
 }

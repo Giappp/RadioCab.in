@@ -18,16 +18,16 @@ export class GetStartedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.companyForm = new FormGroup({
-      companyName: new FormControl(null, Validators.required),
-      representative: new FormControl(null, Validators.required),
-      designation: new FormControl(null,Validators.required),
-      address: new FormControl(null, Validators.required),
-      telephone: new FormControl(null, [Validators.required, Validators.pattern(/^0\d{9}$/)]),
-      phone: new FormControl(null, Validators.pattern(/^0\d{9}$/)),
-      fax: new FormControl(null, Validators.pattern(/^0\d{9}$/)),
-      checkbox: new FormControl(false, Validators.requiredTrue),
-    });
+      this.companyForm = new FormGroup({
+        companyName: new FormControl(null, Validators.required),
+        representative: new FormControl(null, Validators.required),
+        designation: new FormControl(null,Validators.required),
+        address: new FormControl(null, Validators.required),
+        telephone: new FormControl(null, [Validators.required, Validators.pattern(/^0\d{9}$/)]),
+        phone: new FormControl(null, Validators.pattern(/^0\d{9}$/)),
+        fax: new FormControl(null, Validators.pattern(/^0\d{9}$/)),
+        checkbox: new FormControl(false, Validators.requiredTrue),
+      });
   }
 
   OnFormSubmit() {

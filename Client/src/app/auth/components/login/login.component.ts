@@ -76,7 +76,10 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(['/driver'])
                 }
               }
-            ).finally(() => this.loginForm.reset());
+            ).finally(() => {
+              this.submitted = false;
+              this.loginForm.reset()
+            });
           } else {
             this.errorMessage = 'Invalid email or password';
             Swal.fire({

@@ -35,7 +35,6 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
     AuthModule,
     ToastrModule.forRoot({positionClass: 'inline'}),
     ToastrComponentlessModule,
-    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),
