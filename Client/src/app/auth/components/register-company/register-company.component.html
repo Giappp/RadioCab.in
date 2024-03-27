@@ -10,7 +10,9 @@
                     <div class="col-12">
                         <label class="form-label">Display Name: </label>
                         <input type="displayName" class="form-control" formControlName="displayName">
-                        <small *ngIf="companyForm.get('displayName').invalid && companyForm.get('displayName').touched">*Display Name is
+                        <small
+                            *ngIf="companyForm.get('displayName').invalid && companyForm.get('displayName').touched">*Display
+                            Name is
                             required.</small>
                     </div>
 
@@ -41,6 +43,7 @@
                             do not match.</small>
                     </div>
                 </div>
+                <hr class="my-4">
                 <div class="input-group">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" formControlName="checkbox">
@@ -48,8 +51,8 @@
                         accept <a href="#">Terms </a>and <a href="#">Privacy Policy.</a>
                     </div>
                     <a [routerLink]="['/auth/register-role']"
-                        class="text-end ms-auto text-decoration-underline text-primary" (click)="scrollToTop()">Back to Role</a>
-
+                        class="text-end ms-auto text-decoration-underline text-primary" (click)="scrollToTop()">Back to
+                        Role</a>
                 </div>
                 <button class="w-100 btn btn-outline-primary btn-lg" type="submit"
                     [disabled]="companyForm.invalid">Signup</button>

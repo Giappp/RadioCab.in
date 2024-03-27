@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './admin-navbar.component.css'
 })
 export class AdminNavbarComponent implements OnInit {
-  adminName: string = '';
+  adminName: string = 'Admin';
 
   constructor(private authService: AuthService, private router: Router) { }
   

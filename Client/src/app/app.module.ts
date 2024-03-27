@@ -15,6 +15,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CompanyModule } from './company/company.module';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
     provideClientHydration(),
     provideHttpClient(withFetch()),
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-    JwtHelperService
+    JwtHelperService,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

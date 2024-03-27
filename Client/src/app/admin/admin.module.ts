@@ -6,6 +6,10 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ManageDriversComponent } from './components/manage-drivers/manage-drivers.component';
 import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +19,13 @@ import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.com
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatTableModule,
+    MatIconModule,
+    MatPaginator
+  ],
+  exports: [
+    AdminNavbarComponent
   ]
 })
 export class AdminModule { }

@@ -1,19 +1,13 @@
 <main>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Company Listing</h1>
-                <p class="lead text-body-secondary">List of companies that have participated and cooperated with
-                    RadioCab.In.</p>
-                <input type="text" class="form-control mb-3" placeholder="Search drivers..."
-                    (keyup)="searchCompany($event)">
-            </div>
-        </div>
-    </section>
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light text-center">Company Listing</h1>
+        <p class="lead text-body-secondary text-center">List of companies that have participated and cooperated with
+            RadioCab.In.</p>
+        <input type="text" class="form-control mb-3" placeholder="Search drivers..." (keyup)="searchCompany($event)">
+    </div>
 
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
-
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col" *ngFor="let company of filteredCompanies">
                     <div class="card shadow-sm">
@@ -31,5 +25,7 @@
             </div>
         </div>
     </div>
-
+    <mat-paginator [length]="companies.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)">
+    </mat-paginator>
 </main>
