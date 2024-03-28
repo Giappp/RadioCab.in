@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 export interface Driver {
   name: string;
@@ -25,11 +26,34 @@ const DRIVER_DATA: Driver[] = [
   templateUrl: './manage-drivers.component.html',
   styleUrls: ['./manage-drivers.component.css']
 })
-export class ManageDriversComponent {
+export class ManageDriversComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'phone', 'address', 'city', 'paymentType', 'actions'];
   dataSource = DRIVER_DATA;
 
-  editDriver(element: any) {}
+  editDriver(element: any) { }
 
-  deleteDriver(element: any) {}
+  deleteDriver(element: any) { }
+
+  driverManager: { description: string }[] = [];
+  pageSize: number = 6;
+  pageSizeOptions: number[] = [1, 3, 5, 6];
+  totalItems: number = DRIVER_DATA.length;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngOnInit() {
+    this.updateDataSource();
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.paginator.length = DRIVER_DATA.length; // Cập nhật lại tổng số phần tử
+    this.updateDataSource();
+  }
+
+  updateDataSource() {
+    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+    const endIndex = startIndex + this.paginator.pageSize;
+    this.dataSource = DRIVER_DATA.slice(startIndex, endIndex);
+  }
 }

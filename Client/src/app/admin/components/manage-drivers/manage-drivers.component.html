@@ -48,6 +48,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <div class="mt-4 ">
-    <mat-paginator [length]="100" [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 8]" aria-label="Select page">
+    <mat-paginator [length]="dataSource.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="handlePageEvent($event)">
     </mat-paginator>
+
 </div>
