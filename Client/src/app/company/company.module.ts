@@ -8,6 +8,8 @@ import { CompanyServicesComponent } from './components/company-services/company-
 import { GetStartedComponent } from './components/get-started/get-started.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StartedPlanComponent } from './components/started-plan/started-plan.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { StartedPlanComponent } from './components/started-plan/started-plan.com
   imports: [
     CommonModule,
     CompanyRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class CompanyModule { }

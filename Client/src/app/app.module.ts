@@ -36,7 +36,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AuthModule,
     ToastrModule.forRoot({positionClass: 'inline'}),
     ToastrComponentlessModule,
-    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),
